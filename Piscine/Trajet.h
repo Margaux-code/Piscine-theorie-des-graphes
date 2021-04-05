@@ -10,7 +10,7 @@ class Trajet
 private :
     Point m_depart;
     Point m_arrivee;
-    int m_durée;
+    double m_durée;
     std::string typeTransport;
 
 public:
@@ -21,8 +21,8 @@ public:
 
    Point getArrivee()const;
 
-    int getDuree() const;
-    int setDuree(int duree);
+    double getDuree() const;
+    double setDuree(double duree);
 
     std::string getTransport() const;
 };
