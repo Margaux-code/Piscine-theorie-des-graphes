@@ -15,13 +15,13 @@ std::vector <Point> dijkstra(int debut, int arrivee)
         ///Remplir TousSommets quand le fichier sera là
 
         TousSommets[i].second = false;
-        std::pair <Point, double> tampon (TousSommets[i],100000);
-        Chemin_court.push_back(tampon);
-        if () ///Faire le if en fonction des numéros du sommets quand ils seront là
+        //std::pair <Point*, double> tampon (TousSommets[i],100000);
+        //Chemin_court.push_back(tampon);
+       /* if () ///Faire le if en fonction des numéros du sommets quand ils seront là
         {
             Chemin_court[i].second =0;
             file_attente.push_back(Chemin_court[i]);
-        }
+        }*/
     }
 ///Boucle principale de l'algorithme
     while(!file_attente.empty())
@@ -46,10 +46,10 @@ std::vector <Point> dijkstra(int debut, int arrivee)
 //Marquer le sommet récuperer comme true car on est en train de l'exploré
         for (int i =0; i<TousSommets.size(); i++) ///Attendre le numero des fichiers
         {
-            if (file_attente[numero_sommet].first.)
+           /* if (file_attente[numero_sommet].first.)
             {
 
-            }
+            }*/
         }
 
 

@@ -18,6 +18,9 @@ public:
    ~Trajet();
 
    Trajet(std::string nomTrajet, int valArrivee, int valDepart, std::string typeTransport);
+    int getDepart();
+    int getArrivee();
+    std::string getNomTrajet();
 
     double getDuree() const;
     void setDuree(double duree);
