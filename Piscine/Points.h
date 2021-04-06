@@ -1,35 +1,26 @@
 #ifndef POINTS_H_INCLUDED
 #define POINTS_H_INCLUDED
-
 #include <iostream>
 #include <vector>
 #include <string>
-#include "Trajet.h"
-
 
 class Point
 {
 private:
     std::string m_nom;
     double m_altitude;
-    std::vector<Trajet> m_arrivees;
-    std::vector<Trajet> m_departs;
+    int m_numPoint;
 
 public :
 
     ~Point();
-
     Point();
 
+    Point(int numPoint, std::string nom, double altitude);
     std::string getNom() const;
-    std::string setNom(std::string nom);
-
-    std::vector<Trajet> getArrivees() const;
-
-    std::vector<Trajet> getDeparts() const;
-
+    void setNom(std::string nom);
     double getAltitude() const;
-    double setAltitude(double altitude);
+    void setAltitude(double altitude);
 };
 
 #endif // POINTS_H_INCLUDED

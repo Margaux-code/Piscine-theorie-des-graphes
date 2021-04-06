@@ -10,14 +10,14 @@
 class Graphe
 {
 private :
-    std::vector<Points> m_points;
+    std::vector<Point> m_points;
     std::vector<Trajet> m_trajets;
 public :
     Graphe(std::string nomfichier);
 
     ~Graphe();
 
-    void affichage();
+    //void affichage();
 
     std::vector<Point> rendre_listeP();
     std::vector<Trajet> rendre_listeT();

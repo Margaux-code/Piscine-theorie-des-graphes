@@ -8,21 +8,19 @@
 class Trajet
 {
 private :
-    Point m_depart;
-    Point m_arrivee;
-    double m_durée;
-    std::string typeTransport;
-
+    std::string m_nomTrajet;
+    int m_valArrivee;
+    int m_valDepart;
+    double m_duree;
+    std::string m_typeTransport;
 public:
     Trajet();
    ~Trajet();
 
-   Point getDepart() const;
-
-   Point getArrivee()const;
+   Trajet(std::string nomTrajet, int valArrivee, int valDepart, std::string typeTransport);
 
     double getDuree() const;
-    double setDuree(double duree);
+    void setDuree(double duree);
 
     std::string getTransport() const;
 };

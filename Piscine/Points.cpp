@@ -4,26 +4,29 @@ Point::Point() {}
 
 Point::~Point() {}
 
-std::string Point::getNom()
+Point::Point(int numPoint, std::string nom, double altitude)
+{
+    m_numPoint = numPoint;
+    m_nom = nom;
+    m_altitude = altitude;
+}
+
+
+std::string Point::getNom() const
 {
     return m_nom;
 }
-std::string Point::setNom(std::string nom)
+void Point::setNom(std::string nom)
 {
     m_nom = nom;
-}
-
-std::vector<Trajet> Point::getArrivees() const
-{
-    return m_arrivees;
-}
-
-std::vector<Trajet> Point::getDeparts() const
-{
-    return m_departs;
 }
 
 double Point::getAltitude() const
 {
     return m_altitude;
+}
+
+void Point::setAltitude(double altitude)
+{
+    m_altitude = altitude;
 }
