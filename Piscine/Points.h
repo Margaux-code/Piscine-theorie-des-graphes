@@ -2,11 +2,16 @@
 #define POINTS_H_INCLUDED
 
 #include <iostream>
+#include <vector>
+#include <string>
+#include "Trajet.h"
+
 
 class Point
 {
 private:
     std::string m_nom;
+    double m_altitude;
     std::vector<Trajet> m_arrivees;
     std::vector<Trajet> m_departs;
 
@@ -23,7 +28,8 @@ public :
 
     std::vector<Trajet> getDeparts() const;
 
-
+    double getAltitude() const;
+    double setAltitude(double altitude);
 };
 
 #endif // POINTS_H_INCLUDED

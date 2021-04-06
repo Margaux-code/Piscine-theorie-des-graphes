@@ -2,8 +2,8 @@
 #define TRAJET_H_INCLUDED
 
 #include <iostream>
-#include "Points.h"
 #include <string>
+#include "Points.h"
 
 class Trajet
 {
