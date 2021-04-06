@@ -21,6 +21,7 @@ public :
     void setNom(std::string nom);
     double getAltitude() const;
     void setAltitude(double altitude);
+    int getNumPoint();
 };
 
 #endif // POINTS_H_INCLUDED

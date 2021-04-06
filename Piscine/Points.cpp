@@ -30,3 +30,8 @@ void Point::setAltitude(double altitude)
 {
     m_altitude = altitude;
 }
+
+ int Point::getNumPoint()
+ {
+     return m_numPoint;
+ }
