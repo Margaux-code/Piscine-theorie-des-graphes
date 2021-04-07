@@ -50,7 +50,7 @@
 1617708476 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\trajet.cpp
 	"Trajet.h"
 
-1617715713 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.cpp
+1617790291 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.cpp
 	"Graphe.h"
 
 1617789027 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\points.h
@@ -74,5 +74,8 @@
 	"Trajet.h"
 
 1617742475 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\dijkstra.cpp
+	"Graphe.h"
+
+1617790291 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\bfs.cpp
 	"Graphe.h"
 

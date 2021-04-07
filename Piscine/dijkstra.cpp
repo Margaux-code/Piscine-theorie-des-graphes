@@ -1,5 +1,48 @@
 #include "Graphe.h"
 
+std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point*> TousPoints)
+{
+
+    std::vector<Point> Chemin;
+    Point actuel;
+    for (int i=0; i<TousPoints.size(); i++)
+    {
+        if (TousPoints[i]->getNumPoint()==arrivee)
+        {
+            actuel = *TousPoints[i];
+            Chemin.push_back(actuel);
+        }
+    }
+
+    while (actuel.getNumPoint()!= debut)
+    {
+        int predecesseur = actuel.getPredecesseur();
+        for (int i=0; i<TousPoints.size(); i++)
+        {
+            if (TousPoints[i]->getNumPoint()==predecesseur)
+            {
+                Point actuel = *TousPoints[i];
+                Chemin.push_back(actuel);
+            }
+        }
+
+    }
+
+
+return Chemin;
+
+}
+
+void afficher_chemin(std::vector<Point> Chemin_final)
+{
+    std::cout<< "Le chemin a prendre est :" << std::endl;
+    for (int i=0; i<Chemin_final.size();i++)
+    {
+        std::cout << Chemin_final[i].getNom() << "->";
+    }
+    std::cout<<std::endl;
+}
+
 
 std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoints, std::vector<Trajet> TousTrajets)
 {
@@ -8,8 +51,8 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoin
 
     for(int i=0; i<TousPoints.size(); i++)
     {
-      TousPoints[i]->setBool(false);
-      TousPoints[i]->setChemin(100000);
+        TousPoints[i]->setBool(false);
+        TousPoints[i]->setChemin(100000);
         if (TousPoints[i]->getNumPoint()==debut)
         {
             TousPoints[i]->setChemin(0);
@@ -49,27 +92,29 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoin
             if (TousTrajets[i].getDepart() == file_attente[numero_sommet].first->getNumPoint())
             {
                 Point successeur = TousTrajets[i].getPointArrivee();
-               if (successeur.getBool() == false)
-               {
-                   //Calcul de la durée
-                   int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first->getChemin();
-                   if (chemin < successeur.getChemin())
-                   {
+                if (successeur.getBool() == false)
+                {
+                    //Calcul de la durée
+                    int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first->getChemin();
+                    if (chemin < successeur.getChemin())
+                    {
                         successeur.setChemin(chemin);
-                   //Marque qui est le predecesseur
-                   int predecesseur =file_attente[numero_sommet].first->getNumPoint();
-                   successeur.setPredecesseur(predecesseur);
-                   //Mettre dans la file d'attente
-                   std::pair<Point*,double> buffer(&successeur, chemin);
-                   file_attente.push_back(buffer);
+                        //Marque qui est le predecesseur
+                        int predecesseur =file_attente[numero_sommet].first->getNumPoint();
+                        successeur.setPredecesseur(predecesseur);
+                        //Mettre dans la file d'attente
+                        std::pair<Point*,double> buffer(&successeur, chemin);
+                        file_attente.push_back(buffer);
 
-                   }
+                    }
 
 
-               }
+                }
             }
         }
 
     }
-
+    std::vector<Point> Chemin_final = Trouver_chemin(debut, arrivee,TousPoints);
+    afficher_chemin(Chemin_final);
+    return Chemin_final;
 }
