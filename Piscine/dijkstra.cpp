@@ -5,7 +5,7 @@ std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point*> Tou
 
     std::vector<Point> Chemin;
     Point actuel;
-    for (int i=0; i<TousPoints.size(); i++)
+    for (unsigned int i=0; i<TousPoints.size(); i++)
     {
         if (TousPoints[i]->getNumPoint()==arrivee)
         {

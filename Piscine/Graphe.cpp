@@ -26,12 +26,26 @@ Graphe::Graphe(std::string nomfichier)
         std::string typeTransport;
         int valDepart, valArrivee, val;
         ifs >> val >> nomTrajet >> typeTransport >> valDepart >> valArrivee;
-        Trajet n(nomTrajet,valArrivee, valDepart, typeTransport);
+        Trajet n(nomTrajet,valDepart, valArrivee, typeTransport);
         n.setPoints(m_points);
         m_trajets.push_back(n);
-
     }
-
+    for(auto p : m_points)
+    {
+        std::cout << "num point : " << p.getNumPoint() << std::endl;
+        std::cout << "Nom du point : " << p.getNom() << std::endl;
+        std::cout << "Altitude du point : " << p.getAltitude() << std::endl;
+        std::cout << std::endl;
+    }
+    std::cout << std::endl << std::endl << std::endl;
+    for(auto t : m_trajets)
+    {
+        std::cout << "num du point depart : " << t.getDepart() << std::endl;
+        std::cout << "Num du point d'arrivee: " << t.getArrivee() << std::endl;
+        std::cout << "Nom du trajet : " << t.getNomTrajet() << std::endl;
+        std::cout << "Nom du type de transport : " << t.getTransport() << std::endl;
+        std::cout << std::endl;
+    }
 }
 
 ///Faire l'éventuel affichage (fonctionnalité) des éléments du Graphe

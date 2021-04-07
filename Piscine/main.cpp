@@ -1,6 +1,6 @@
 #include "Graphe.h"
 #include "header.h"
-void test_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
+/*void test_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 {
     std::cout <<"Point de depart "<<std::endl;
     int depart;
@@ -20,7 +20,7 @@ void test_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
     std::vector <Point> chemin = dijkstra( depart,  arrivee,points_adresse,trajets);
 
 }
-
+*/
 
 
 
@@ -33,7 +33,7 @@ int main()
     //menu();
     std::vector<Point> points = g.rendre_listeP();
     std::vector<Trajet> trajets=g.rendre_listeT();
-    test_dikjstra(points, trajets);
+    //test_dikjstra(points, trajets);
     std::cout << "Bonjour  c'est Margaux" << std::endl;
     return 0;
 }
