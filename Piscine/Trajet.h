@@ -27,7 +27,8 @@ public:
 
     double getDuree() const;
     void setDuree();
-
+    Point getPointDepart();
+    Point getPointArrivee();
     std::string getTransport() const;
 };
 

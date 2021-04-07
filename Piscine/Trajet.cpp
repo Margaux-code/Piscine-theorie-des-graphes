@@ -13,6 +13,17 @@ int Trajet::getArrivee()
     return m_valArrivee;
 }
 
+  Point Trajet::getPointDepart()
+  {
+      return m_depart;
+  }
+    Point Trajet::getPointArrivee()
+    {
+        return m_arrivee;
+    }
+
+
+
 Trajet::Trajet(std::string nomTrajet, int valDepart, int valArrivee, std::string typeTransport)
 {
     m_nomTrajet = nomTrajet;

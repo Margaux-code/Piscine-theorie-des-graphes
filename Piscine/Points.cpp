@@ -11,6 +11,36 @@ Point::Point(int numPoint, std::string nom, double altitude)
     m_altitude = altitude;
 }
 
+  void Point::setBool(bool marque)
+  {
+      m_marque = marque;
+  }
+
+   void Point::setChemin(double chemin)
+   {
+       m_chemin=chemin;
+   }
+
+    double Point::getChemin()
+    {
+        return m_chemin;
+    }
+
+      bool Point::getBool()
+      {
+          return m_marque;
+      }
+void Point::setPredecesseur(double pred)
+{
+    m_num_Predecesseur= pred;
+}
+    double Point::getPredecesseur()
+    {
+        return m_num_Predecesseur;
+    }
+
+
+
 
 std::string Point::getNom() const
 {

@@ -10,7 +10,10 @@ private:
     std::string m_nom;
     double m_altitude;
     int m_numPoint;
-
+    //Attributs utiles au Dijkstra
+    bool m_marque;
+    double m_chemin;
+    int m_num_Predecesseur;
 public :
 
     ~Point();
@@ -22,6 +25,12 @@ public :
     double getAltitude() const;
     void setAltitude(double altitude);
     int getNumPoint();
+    void setBool(bool marque);
+    bool getBool();
+    void setChemin(double chemin);
+    double getChemin();
+    void setPredecesseur(double pred);
+    double getPredecesseur();
 };
 
 #endif // POINTS_H_INCLUDED
