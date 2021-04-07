@@ -51,14 +51,5 @@ std::vector <Point> dijkstra(int debut, int arrivee)
 
             }*/
         }
-
-
-
-
     }
-
-
-
-
-
 }
