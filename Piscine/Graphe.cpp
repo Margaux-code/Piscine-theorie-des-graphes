@@ -27,9 +27,11 @@ Graphe::Graphe(std::string nomfichier)
         int valDepart, valArrivee, val;
         ifs >> val >> nomTrajet >> typeTransport >> valDepart >> valArrivee;
         Trajet n(nomTrajet,valArrivee, valDepart, typeTransport);
+        n.setPoints(m_points);
         m_trajets.push_back(n);
 
     }
+
 }
 
 ///Faire l'éventuel affichage (fonctionnalité) des éléments du Graphe

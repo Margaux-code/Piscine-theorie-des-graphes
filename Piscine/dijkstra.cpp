@@ -1,5 +1,5 @@
 #include "Graphe.h"
-
+#include "header.h"
 std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point*> TousPoints)
 {
 
@@ -47,11 +47,12 @@ void afficher_chemin(std::vector<Point> Chemin_final)
 }
 
 
-std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoints, std::vector<Trajet> TousTrajets)
+std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoint, std::vector<Trajet> TousTrajet)
 {
     //initialiser une file d'attente
     std::vector<std::pair< Point*, double>> file_attente;
-
+    std::vector<Point*> TousPoints = TousPoint;
+    std::vector<Trajet> TousTrajets =TousTrajet;
     for(int i=0; i<TousPoints.size(); i++)
     {
         TousPoints[i]->setBool(false);
@@ -86,7 +87,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoin
         //Marquer le sommet récuperer comme true car on est en train de l'explorer
         file_attente[numero_sommet].first->setBool(true);
 
-
+Point *successeur;
 
 
 //Recuperer tous les antecedents grâce aux trajets puis les rajouter dans la file d'attente si leur booléen est faux
@@ -94,19 +95,28 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoin
         {
             if (TousTrajets[i].getDepart() == file_attente[numero_sommet].first->getNumPoint())
             {
-                Point successeur = TousTrajets[i].getPointArrivee();
-                if (successeur.getBool() == false)
+                Point succ = TousTrajets[i].getPointArrivee();
+                for (int i =0; i<TousPoints.size();i++)
+                {
+                    if (TousPoints[i]->getNumPoint()== succ.getNumPoint())
+                         successeur = TousPoints[i];
+                }
+
+
+
+                if (successeur->getBool() == false)
                 {
                     //Calcul de la durée
                     int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first->getChemin();
-                    if (chemin < successeur.getChemin())
+                    if (chemin < successeur->getChemin())
                     {
-                        successeur.setChemin(chemin);
+                        successeur->setChemin(chemin);
                         //Marque qui est le predecesseur
                         int predecesseur =file_attente[numero_sommet].first->getNumPoint();
-                        successeur.setPredecesseur(predecesseur);
+                        successeur->setPredecesseur(predecesseur);
+
                         //Mettre dans la file d'attente
-                        std::pair<Point*,double> buffer(&successeur, chemin);
+                        std::pair<Point*,double> buffer(successeur, chemin);
                         file_attente.push_back(buffer);
 
                     }
@@ -115,6 +125,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point*> TousPoin
                 }
             }
         }
+        file_attente.erase(file_attente.begin()+ numero_sommet);
 
     }
     std::vector<Point> Chemin_final = Trouver_chemin(debut, arrivee,TousPoints);
