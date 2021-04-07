@@ -35,12 +35,15 @@ return Chemin;
 
 void afficher_chemin(std::vector<Point> Chemin_final)
 {
+     int fin;
     std::cout<< "Le chemin a prendre est :" << std::endl;
     for (int i=0; i<Chemin_final.size();i++)
     {
         std::cout << Chemin_final[i].getNom() << "->";
+      fin =i;
     }
     std::cout<<std::endl;
+    std::cout <<"Le temps que cela va prendre est " << Chemin_final[fin].getChemin() <<"minutes" <<std::endl;
 }
 
 
