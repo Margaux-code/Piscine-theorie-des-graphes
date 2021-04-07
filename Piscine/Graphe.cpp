@@ -65,3 +65,46 @@ std::vector<Trajet> Graphe::rendre_listeT()
 {
     return m_trajets;
 }
+
+std::vector<Point> Graphe::BFS()
+{
+    int valSommetDepart;
+    std::queue<Point> file;
+    Point point;
+    std::vector<Point> vectPredecesseurs;
+
+    std::cout << "entrez le sommet de depart d'etude entre 1 et 37) de la station afin" << std::endl << "de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl;
+    do
+    {
+        std::cin >>valSommetDepart;
+    }
+    while(valSommetDepart < 1 || valSommetDepart > 37);
+
+    for(auto elem : m_points)
+        elem.setCouleur(false);
+    for(int i = 0 ; i < 37 ; i++)
+    {
+        vectPredecesseurs.push_back(point);
+    }
+
+    Point pointOrigine = m_points[valSommetDepart - 1];
+
+    file.push(pointOrigine);
+    m_points[valSommetDepart - 1].setCouleur(true);
+    while(!file.empty())
+    {
+        Point debut = file.front();
+        file.pop();
+        debut = m_points[debut.getNumPoint() - 1];
+        for(auto elem : debut.getAdj())
+        {
+            if(m_points[elem.getNumPoint() - 1].getCouleur() == false)
+            {
+                file.push(elem);
+                m_points[elem.getNumPoint() - 1].setCouleur(true);
+                vectPredecesseurs[elem.getNumPoint() - 1].setNumPoint(debut.getNumPoint());
+            }
+        }
+    }
+    return vectPredecesseurs;
+}

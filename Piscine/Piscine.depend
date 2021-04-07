@@ -1,10 +1,16 @@
 # depslib dependency file v1.0
 1617716730 
 
-1617794462 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.cpp
+1617812279 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.cpp
 	"Graphe.h"
 
-1617708950 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.h
+1617811399 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.h
+	<iostream>
+	<vector>
+	<queue>
+	<fstream>
+	"Points.h"
+	"Trajet.h"
 
 1617793646 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\main.cpp
 	"Graphe.h"
@@ -29,7 +35,7 @@
 
 1617700876 ated upstream
 
-1617787775 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.h
+1617812279 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.h
 	<iostream>
 	<vector>
 	<string>
@@ -43,7 +49,7 @@
 	<string>
 	"Points.h"
 
-1617787775 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.cpp
+1617812279 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.cpp
 	"Points.h"
 
 1617793876 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\main.cpp

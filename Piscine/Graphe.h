@@ -3,6 +3,7 @@
 
 #include <iostream>
 #include <vector>
+#include <queue>
 #include <fstream>
 #include "Points.h"
 #include "Trajet.h"
@@ -22,7 +23,7 @@ public :
     std::vector<Point> rendre_listeP();
     std::vector<Trajet> rendre_listeT();
 
-
+    std::vector<Point> BFS();
 };
 
 #endif // GRAPHE_H_INCLUDED
