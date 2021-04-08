@@ -92,5 +92,5 @@ std::string Trajet::getTransport() const
 
 std::string Trajet::getNomTrajet()
 {
-    return m_typeTransport;
+    return m_nomTrajet;
 }

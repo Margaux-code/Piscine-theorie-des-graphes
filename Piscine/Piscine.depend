@@ -1,10 +1,16 @@
 # depslib dependency file v1.0
 1617716730 
 
-1617708476 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.cpp
+1617812279 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.cpp
 	"Graphe.h"
 
-1617708950 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.h
+1617811399 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\graphe.h
+	<iostream>
+	<vector>
+	<queue>
+	<fstream>
+	"Points.h"
+	"Trajet.h"
 
 1617793646 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\main.cpp
 	"Graphe.h"
@@ -29,26 +35,28 @@
 
 1617700876 ated upstream
 
-1617708919 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.h
+1617812279 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.h
 	<iostream>
 	<vector>
 	<string>
 
-1617641023 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\menu.cpp
-	"Graphe.h"
+1617787775 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\menu.cpp
+	<iostream>
+	<windows.h>
 
-1617709075 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\trajet.h
+1617787775 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\trajet.h
 	<iostream>
 	<string>
 	"Points.h"
 
-1617708919 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.cpp
+1617812279 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\points.cpp
 	"Points.h"
 
-1617708919 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\main.cpp
+1617793876 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\main.cpp
 	"Graphe.h"
+	"header.h"
 
-1617708476 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\trajet.cpp
+1617794632 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\trajet.cpp
 	"Trajet.h"
 
 1617792778 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.cpp
@@ -82,4 +90,13 @@
 	"Graphe.h"
 
 1617793325 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\header.h
+
+1617791807 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\bfs.cpp
+	"Graphe.h"
+
+1617794112 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\dijkstra.cpp
+	"Graphe.h"
+	"header.h"
+
+1617793714 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\header.h
 

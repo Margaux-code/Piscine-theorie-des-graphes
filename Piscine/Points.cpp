@@ -65,3 +65,23 @@ void Point::setAltitude(double altitude)
  {
      return m_numPoint;
  }
+
+ void Point::setNumPoint(int nvNumPoint)
+ {
+     m_numPoint = nvNumPoint;
+ }
+
+ ///Méthodes pour le BFS
+ void Point::setCouleur(bool noir)
+ {
+     m_color = noir;
+ }
+ bool Point::getCouleur()const
+ {
+     return m_color;
+ }
+
+std::vector<Point> Point::getAdj()
+{
+    return m_adjacents;
+}
