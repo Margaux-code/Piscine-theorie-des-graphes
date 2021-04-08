@@ -28,6 +28,7 @@ Graphe::Graphe(std::string nomfichier)
         ifs >> val >> nomTrajet >> typeTransport >> valDepart >> valArrivee;
         Trajet n(nomTrajet,valDepart, valArrivee, typeTransport);
         n.setPoints(m_points);
+        n.setDuree();
         m_trajets.push_back(n);
     }
     for(auto p : m_points)

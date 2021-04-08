@@ -14,6 +14,7 @@ private:
     bool m_marque;
     double m_chemin;
     int m_num_Predecesseur;
+    std::string m_nom_trajet;
     //Attributs pour le BFS
     bool m_color;
     std::vector <Point> m_adjacents;
@@ -35,7 +36,8 @@ public :
     double getChemin();
     void setPredecesseur(double pred);
     double getPredecesseur();
-
+    void setNomTrajet(std::string tratra);
+    std::string getNomTrajet();
     //Méthodes pour le BFS
     void setCouleur(bool noir);
     bool getCouleur()const;

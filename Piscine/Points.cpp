@@ -11,6 +11,16 @@ Point::Point(int numPoint, std::string nom, double altitude)
     m_altitude = altitude;
 }
 
+void Point::setNomTrajet(std::string tratra)
+{
+    m_nom_trajet =tratra;
+}
+
+std::string Point::getNomTrajet()
+{
+    return m_nom_trajet;
+}
+
   void Point::setBool(bool marque)
   {
       m_marque = marque;

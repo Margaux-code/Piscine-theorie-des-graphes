@@ -28,22 +28,33 @@ std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> Tous
 
     }
 
-
 return Chemin;
 
 }
 
 void afficher_chemin(std::vector<Point> Chemin_final)
 {
-     int fin;
-    std::cout<< "Le chemin a prendre est :" << std::endl;
-    for (int i=0; i<Chemin_final.size();i++)
+     int fin = Chemin_final.size();
+    std::cout<< "Pour ce chemin il va valloir passer par ces points :" << std::endl;
+
+    for (int i = (Chemin_final.size()-1); i>=0;i--)
     {
-        std::cout << Chemin_final[i].getNom() << "->";
-      fin =i;
+
+        std::cout <<" -> "<< Chemin_final[i].getNom() ;
+
+    }
+    std::cout<< "Pour cela il faut prendre les trajets suivants :"<<std::endl;
+      for (int i = (Chemin_final.size()-1); i>=0;i--)
+    {
+
+
+        std::cout <<" -> "<< Chemin_final[i].getNomTrajet() ;
+
     }
     std::cout<<std::endl;
-    std::cout <<"Le temps que cela va prendre est " << Chemin_final[fin].getChemin() <<"minutes" <<std::endl;
+    std::cout <<"Le temps que cela va prendre est " << Chemin_final[0].getChemin() <<" minutes" <<std::endl;
+
+
 }
 
 
@@ -113,6 +124,7 @@ std::vector<Point> TousPoints = TousPoint;
                 if (bouboul == false)
                 {
                     //Calcul de la durée
+                        int totot =TousTrajets[i].getDuree();
                         int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first.getChemin();
                         if (chemin < TousPoints[place].getChemin())
                         {
@@ -120,6 +132,7 @@ std::vector<Point> TousPoints = TousPoint;
                                        //Marque qui est le predecesseur
                         int predecesseur =file_attente[numero_sommet].first.getNumPoint();
                         TousPoints[place].setPredecesseur(predecesseur);
+                        TousPoints[place].setNomTrajet(TousTrajets[i].getNomTrajet());
                         }
                         //Mettre dans la file d'attente
                         std::pair<Point,double> buffer(TousPoints[place], chemin);
