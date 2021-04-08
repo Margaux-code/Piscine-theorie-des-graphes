@@ -36,6 +36,6 @@ int main()
     //test_dikjstra(points, trajets);
     std::cout << "Bonjour  c'est Margaux" << std::endl;
     std::vector<Point> fileBFS;
-    fileBFS = g.BFS();
+    g.BFS();
     return 0;
 }

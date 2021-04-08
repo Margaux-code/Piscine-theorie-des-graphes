@@ -23,7 +23,7 @@ public :
     std::vector<Point> rendre_listeP();
     std::vector<Trajet> rendre_listeT();
 
-    std::vector<Point> BFS();
+    void BFS();
 };
 
 #endif // GRAPHE_H_INCLUDED

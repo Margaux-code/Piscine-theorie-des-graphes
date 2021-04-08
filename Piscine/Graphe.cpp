@@ -67,13 +67,13 @@ std::vector<Trajet> Graphe::rendre_listeT()
     return m_trajets;
 }
 
-std::vector<Point> Graphe::BFS()
+void Graphe::BFS()
 {
     int valSommetDepart;
     std::queue<Point> file;
     Point point;
     std::vector<Point> vectPredecesseurs;
-
+    int pointFinal = 0;
     std::cout << "entrez le sommet de depart d'etude entre 1 et 37) de la station afin" << std::endl << "de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl;
     do
     {
@@ -83,12 +83,14 @@ std::vector<Point> Graphe::BFS()
 
     for(auto elem : m_points)
         elem.setCouleur(false);
-    for(int i = 0 ; i < 37 ; i++)
+    for(auto elem : m_points)
     {
-        vectPredecesseurs.push_back(point);
+        vectPredecesseurs.push_back(elem);
     }
 
     Point pointOrigine = m_points[valSommetDepart - 1];
+
+    std::cout << pointOrigine.getNumPoint() << std::endl;
 
     file.push(pointOrigine);
     m_points[valSommetDepart - 1].setCouleur(true);
@@ -107,5 +109,37 @@ std::vector<Point> Graphe::BFS()
             }
         }
     }
-    return vectPredecesseurs;
+    for(auto elem : vectPredecesseurs)
+        std::cout << vectPredecesseurs[elem.getNumPoint() - 1].getNumPoint() << std::endl;
+
+    //Affichage du BFS
+    /*system("cls");
+    std::cout << "Trajets suivant le moins de pistes et remontés à partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
+    for(auto elem : vectPredecesseurs)
+    {
+        //On recupere la valeur du predecesseur
+        int predecesseur = elem.getNumPoint() ;
+
+        //si le sommet a un predecesseur
+        if(predecesseur >= 1 && predecesseur <= 37)
+        {
+            //On affiche le sommet d'arrivee du parcours
+            std::cout << pointFinal;
+
+            //Tant qu'il y a toujours un predecesseur
+            while(predecesseur >= 1 && predecesseur <= 37)
+            {
+                std::cout << " <-- ";
+
+                //on affiche le predecesseur
+                std::cout << predecesseur;
+
+                //On recupere le predecesseur du predecesseur
+                predecesseur = vectPredecesseurs[predecesseur].getNumPoint();
+
+            }
+            std::cout<<std::endl;
+        }
+        pointFinal++;
+    }*/
 }
