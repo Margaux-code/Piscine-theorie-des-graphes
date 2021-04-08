@@ -11,6 +11,7 @@ private :
     std::string m_nomTrajet;
     int m_valArrivee;
     int m_valDepart;
+    int m_numTrajet;
     double m_duree;
     Point m_depart;
     Point m_arrivee;
@@ -19,7 +20,7 @@ public:
     Trajet();
    ~Trajet();
 
-   Trajet(std::string nomTrajet, int valArrivee, int valDepart, std::string typeTransport);
+   Trajet(int numTrajet,std::string nomTrajet, int valArrivee, int valDepart, std::string typeTransport);
    void setPoints(std::vector<Point> liste_Points);
     int getDepart();
     int getArrivee();
@@ -30,6 +31,7 @@ public:
     Point getPointDepart();
     Point getPointArrivee();
     std::string getTransport() const;
+    int getNumTrajet();
 };
 
 

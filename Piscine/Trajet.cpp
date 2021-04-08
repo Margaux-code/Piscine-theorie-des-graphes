@@ -22,10 +22,14 @@ int Trajet::getArrivee()
         return m_arrivee;
     }
 
-
-
-Trajet::Trajet(std::string nomTrajet, int valDepart, int valArrivee, std::string typeTransport)
+int Trajet::getNumTrajet()
 {
+    return m_numTrajet;
+}
+
+Trajet::Trajet(int numTrajet, std::string nomTrajet, int valDepart, int valArrivee, std::string typeTransport)
+{
+    m_numTrajet = numTrajet;
     m_nomTrajet = nomTrajet;
     m_valArrivee = valArrivee;
     m_valDepart = valDepart;
