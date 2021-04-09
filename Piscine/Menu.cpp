@@ -1,7 +1,9 @@
 #include <iostream>
 #include <windows.h>
 #include "Menu.h"
-/*#include "Graphe.h"*/
+#include "header.h"
+#include "Graphe.h"
+
 
 COORD convertToCoord(int ligne, int colonne)
 {
@@ -28,6 +30,7 @@ void PutCouleur(int couleurTexte, int couleurFond)
 
 void menu()
 {
+
     PutCouleur(15,0);
     gotoligcol(3,50);
     std::cout << "BIENVENUE AUX ARCS";
@@ -42,10 +45,10 @@ void menu()
     std::cout << "2/ Choisir un point";
     PutCouleur(3,0);
     gotoligcol(16,0);
-    std::cout << "3/ Afficher tous les plus courts chemins d un point";
+    std::cout << "3/Afficher l itineraire de plus rapide" ;
     PutCouleur(3,0);
     gotoligcol(19,0);
-    std::cout << "4/ Afficher l itineraire de plus rapide";
+    std::cout << "4/Afficher tous les plus courts chemins d un point" ;
     PutCouleur(3,0);
     gotoligcol(22,0);
     std::cout << "5/ Calculer le chemin le plus interessant entre deux points";
@@ -53,6 +56,9 @@ void menu()
     gotoligcol(25,0);
 
     int choix = 0;
+    Graphe g{"data_arcs.txt"};
+    std::vector<Point> points = g.rendre_listeP();
+    std::vector<Trajet> trajets=g.rendre_listeT();
     do
     {
         std::cin >> choix;
@@ -68,7 +74,7 @@ void menu()
             break;
         case 3:
             system("cls");
-            case3();
+            case3(trajets, points);
             break;
         case 4:
             system("cls");
@@ -76,7 +82,7 @@ void menu()
             break;
         case 5:
             system("cls");
-            case5();
+            case5(trajets, points);
             break;
         }
     }
@@ -157,7 +163,7 @@ void case2()
     while(choix_case2!=1 && choix_case2!=2);
 }
 
-void case3()
+void case3(std::vector<Trajet> trajets, std::vector<Point> points)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -183,9 +189,7 @@ void case3()
             menu();
             break;
         case 2:
-
-            /*code margo*/
-
+            debut_dikjstra(points, trajets);
             break;
         }
     }
@@ -225,7 +229,7 @@ void case4()
     while(choix_case4!=1 && choix_case4!=2);
 }
 
-void case5()
+void case5(std::vector<Trajet> trajets, std::vector<Point> points)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -251,8 +255,10 @@ void case5()
             menu();
             break;
         case 2:
+        selection_piste(trajets,points);
 
             break;
         }
     }
     while(choix_case5!=1 && choix_case5!=2);
+}
