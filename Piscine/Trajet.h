@@ -28,6 +28,7 @@ public:
 
     double getDuree() const;
     void setDuree();
+    void setDureeSki(double duree);
     Point getPointDepart();
     Point getPointArrivee();
     std::string getTransport() const;
