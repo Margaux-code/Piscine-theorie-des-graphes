@@ -62,31 +62,31 @@ void menu()
     do
     {
         std::cin >> choix;
-        switch(choix)
-        {
-        case 1:
-            system("cls");
-            case1();
-            break;
-        case 2:
-            system("cls");
-            case2();
-            break;
-        case 3:
-            system("cls");
-            case3(trajets, points, g);
-            break;
-        case 4:
-            system("cls");
-            case4(trajets, points, g);
-            break;
-        case 5:
-            system("cls");
-            case5(trajets, points, g);
-            break;
-        }
     }
     while(choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5);
+    switch(choix)
+    {
+    case 1:
+        system("cls");
+        case1();
+        break;
+    case 2:
+        system("cls");
+        case2();
+        break;
+    case 3:
+        system("cls");
+        case3(trajets, points, g);
+        break;
+    case 4:
+        system("cls");
+        case4(trajets, points, g);
+        break;
+    case 5:
+        system("cls");
+        case5(trajets, points, g);
+        break;
+    }
 }
 
 void case1()
@@ -109,7 +109,9 @@ void case1()
     do
     {
         std::cin >> choix_case1;
-        switch(choix_case1)
+    }
+    while(choix_case1!=1 && choix_case1!=2);
+    switch(choix_case1)
         {
         case 1:
             menu();
@@ -125,9 +127,6 @@ void case1()
                 std::cin >> choixTrajet;
             }*/
             break;
-        }
-    }
-    while(choix_case1!=1 && choix_case1!=2);
 }
 
 void case2()
@@ -150,7 +149,9 @@ void case2()
     do
     {
         std::cin >> choix_case2;
-        switch(choix_case2)
+    }
+    while(choix_case2!=1 && choix_case2!=2);
+    switch(choix_case2)
         {
         case 1:
             menu();
@@ -159,8 +160,6 @@ void case2()
 
             break;
         }
-    }
-    while(choix_case2!=1 && choix_case2!=2);
 }
 
 void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
@@ -183,7 +182,9 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     do
     {
         std::cin >> choix_case3;
-        switch(choix_case3)
+    }
+    while(choix_case3!=1 && choix_case3!=2);
+    switch(choix_case3)
         {
         case 1:
             menu();
@@ -212,8 +213,6 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             while(choixAlgo != 1 && choixAlgo != 2);
             break;
         }
-    }
-    while(choix_case3!=1 && choix_case3!=2);
 }
 
 void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
@@ -282,13 +281,14 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             break;
         }
         }
-          PutCouleur(1,0);
+        PutCouleur(1,0);
         std::cout<<"Pour retourner au menu appuyer sur 1 pour quitter appuyer sur n'importe quelle touche"<< std::endl;
         int bulle;
         std::cin>> bulle;
         if (bulle==1)
-        {   system("cls");
-              menu();
+        {
+            system("cls");
+            menu();
 
         }
 
@@ -318,7 +318,9 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     do
     {
         std::cin >> choix_case5;
-        switch(choix_case5)
+    }
+    while(choix_case5!=1 && choix_case5!=2);
+    switch(choix_case5)
         {
         case 1:
             menu();
@@ -328,6 +330,4 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 
             break;
         }
-    }
-    while(choix_case5!=1 && choix_case5!=2);
 }
