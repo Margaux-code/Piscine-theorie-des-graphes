@@ -3,19 +3,19 @@
 void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousPoints)
 {
     std::cout << "Quel type de pistes voulez vous faire ?" <<std::endl;
-    std::cout << "1.Niveau debutant priorisation des pistes vertes et bleues et pas de téleskis "<<std::endl;
-    std::cout << "2.Niveau intermediaire  priorisation pistes rouges et toutes remontées mécaniques"<<std::endl;
-    std::cout <<"3. Niveau avancé : ski-plaisir : plein de descentes moins de remontees " <<std::endl;
+    std::cout << "1.Niveau debutant priorisation des pistes vertes et bleues et pas de teleskis "<<std::endl;
+    std::cout << "2.Niveau intermediaire  priorisation pistes rouges et toutes remontees mecaniques"<<std::endl;
+    std::cout <<"3. Niveau avance : ski-plaisir : plein de descentes moins de remontees " <<std::endl;
     std::vector <Trajet> debutant = TousTrajets;
     std::vector <Trajet> intermediaire =TousTrajets;
     std::vector <Trajet> ski_plaisir  = TousTrajets;
     Trajet tratra_debeug;
     for (auto elem : debutant)
     {
-        std::string type = elem.getTransport();
-          double  temps = elem.getDuree();
+        double  temps = elem.getDuree();
             temps += 50;
             elem.setDureeSki(temps);
+        std::string type = elem.getTransport();
         if (type == "R" || type =="N" || type == "KL" || type == "SURF" || type == "TK" )
         {
             double  temps = elem.getDuree();

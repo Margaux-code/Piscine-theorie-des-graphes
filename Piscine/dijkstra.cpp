@@ -17,6 +17,17 @@ void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
     afficher_chemin(chemin);
 }
 
+void afficher_tous_les_temps(std::vector <Point> TousPoints)
+{
+    PutCouleur(9,0);
+    for (auto elem : TousPoints)
+    {
+        std::cout << "Pour le point " <<elem.getNom()<<" ("<< elem.getNumPoint()<<") : " << elem.getChemin() <<" minutes"<<std::endl;
+    }
+    std::cout <<std::endl;
+    std::cout <<"Pour voir le chemin complet a prendre allez voir l'itineraire le plus rapide dans le menu 4"<<std::endl;
+
+}
 
 std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> TousPoints)
 {
@@ -178,6 +189,11 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
         file_attente.erase(file_attente.begin()+ numero_sommet);
 
     }
-    std::vector<Point> Chemin_final = Trouver_chemin(debut, arrivee,TousPoints);
+    std::vector<Point> Chemin_final;
+    if (arrivee == -1)
+    {
+        afficher_tous_les_temps(TousPoints);
+    }else
+    Chemin_final = Trouver_chemin(debut, arrivee,TousPoints);
     return Chemin_final;
 }

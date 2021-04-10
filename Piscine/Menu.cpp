@@ -52,8 +52,10 @@ void menu()
     PutCouleur(3,0);
     gotoligcol(22,0);
     std::cout << "5/ Calculer le chemin le plus interessant entre deux points";
-    PutCouleur(15,0);
     gotoligcol(25,0);
+    std::cout <<"6/ Quitter";
+    PutCouleur(15,0);
+    gotoligcol(27,0);
 
     int choix = 0;
     Graphe g("data_arcs.txt");
@@ -89,6 +91,8 @@ void menu()
             std::cout << "5/ Calculer le chemin le plus interessant entre deux points";
             PutCouleur(15,0);
             gotoligcol(25,0);
+            std::cout <<"6/ Quitter";
+            gotoligcol(27,0);
             std::cin.clear();
             std::cin.seekg(0, std::ios::end);
             if(!std::cin.fail())
@@ -125,10 +129,12 @@ void menu()
                 system("cls");
                 case5(trajets, points, g);
                 break;
+            case 6 :
+                break;
             }
         }
     }
-    while(choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5);
+    while(choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5 && choix !=6);
 }
 
 void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
@@ -421,6 +427,7 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             {
             case 1:
                 system("cls");
+
                 menu();
                 break;
             case 2:
@@ -433,6 +440,8 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 do
                 {
                     std::cin >> choixAlgo;
+                        }
+                while(choixAlgo != 1 && choixAlgo != 2);
                     switch(choixAlgo)
                     {
                     case 1:
@@ -445,11 +454,16 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     case 2:
                     {
                         system("cls");
+                        std::cout << "Choisissez un sommet entre 1 et 37 "<<std::endl;
+                        int a;
+                        do
+                        {   std::cin>>a;
+                        }while (a<0 || a>37);
+                        std::vector<Point> p = dijkstra(a, -1,points,trajets);
                         break;
                     }
                     }
-                }
-                while(choixAlgo != 1 && choixAlgo != 2);
+
 
                 int retour;
                 std::cout << "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl;
@@ -575,7 +589,7 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     {
                         std::cin >> depart;
                     }
-                    while (depart<0 && depart >37);
+                    while (depart<0 || depart >37);
 
                     std::cout << "Choisissez votre point arrivee" <<std::endl;
                     int arrivee;
@@ -583,7 +597,7 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     {
                         std::cin >> arrivee;
                     }
-                    while (arrivee<0 && arrivee >37);
+                    while (arrivee<0 || arrivee >37);
                     std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
                     afficher_chemin(chemin);
                     int retour;
@@ -667,7 +681,7 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 break;
             case 2:
                 system("cls");
-                //selection_piste(trajets,points);
+                selection_piste(trajets,points);
                 int retour;
                 std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl;
                 do
