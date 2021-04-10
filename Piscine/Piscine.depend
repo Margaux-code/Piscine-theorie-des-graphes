@@ -12,13 +12,19 @@
 	"Points.h"
 	"Trajet.h"
 
-1617793646 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\main.cpp
+1618049407 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\main.cpp
 	"Graphe.h"
 	"header.h"
+	"Menu.h"
+	"Graphe.h"
+	"Points.h"
+	<iostream>
+	<windows.h>
 
-1617715713 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.h
+1618049407 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.h
 	<iostream>
 	<vector>
+	<queue>
 	<fstream>
 	"Points.h"
 	"Trajet.h"
@@ -59,37 +65,50 @@
 1617794632 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\trajet.cpp
 	"Trajet.h"
 
-1617792778 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.cpp
+1618049407 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\graphe.cpp
 	"Graphe.h"
 
-1617789027 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\points.h
+1618049486 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\points.h
 	<iostream>
 	<vector>
 	<string>
 
-1617741148 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\trajet.h
+1618049398 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\trajet.h
 	<iostream>
 	<string>
 	"Points.h"
 
-1617733750 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\menu.cpp
+1618049407 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\menu.cpp
 	<iostream>
 	<windows.h>
+	"Menu.h"
+	"header.h"
+	"Graphe.h"
 
-1617789044 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\points.cpp
+1618049486 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\points.cpp
+	<iostream>
+	<windows.h>
 	"Points.h"
 
-1617741148 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\trajet.cpp
+1618049398 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\trajet.cpp
 	"Trajet.h"
 
-1617796941 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\dijkstra.cpp
+1617980471 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\dijkstra.cpp
 	"Graphe.h"
 	"header.h"
+	"Menu.h"
+	"Points.h"
 
 1617790291 source:c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\bfs.cpp
 	"Graphe.h"
 
-1617793325 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\header.h
+1617967432 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\header.h
+	<iostream>
+	<vector>
+	<queue>
+	<fstream>
+	"Points.h"
+	"Trajet.h"
 
 1617791807 source:c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\bfs.cpp
 	"Graphe.h"
@@ -99,4 +118,8 @@
 	"header.h"
 
 1617793714 c:\users\donatien\desktop\ingé 2 s2\théorie des graphes\projet piscine théorie des graphes\piscine-theorie-des-graphes\piscine\header.h
+
+1618049407 c:\users\marga\onedrive\cours ing 2\informatique\piscine-theorie-des-graphes\piscine\menu.h
+	<vector>
+	"Graphe.h"
 

@@ -1,7 +1,8 @@
+///Faire la récup des infos du fichier !
 #include "Graphe.h"
 
 
-///Faire la récup des infos du fichier !
+
 Graphe::Graphe(std::string nomfichier)
 {
     std::ifstream ifs{nomfichier};
@@ -26,7 +27,7 @@ Graphe::Graphe(std::string nomfichier)
         std::string typeTransport;
         int valDepart, valArrivee, val;
         ifs >> val >> nomTrajet >> typeTransport >> valDepart >> valArrivee;
-        Trajet n(val,nomTrajet,valDepart, valArrivee, typeTransport);
+        Trajet n(val, nomTrajet, valDepart, valArrivee, typeTransport);
         n.setPoints(m_points);
         n.setDuree();
         m_trajets.push_back(n);
@@ -41,7 +42,7 @@ Graphe::Graphe(std::string nomfichier)
     std::cout << std::endl << std::endl << std::endl;
     for(auto t : m_trajets)
     {
-        std::cout << "num du trajet : " << t.getNumTrajet() << std::endl;
+        std::cout << "num du Trajet : " << t.getNumTrajet() << std::endl;
         std::cout << "num du point depart : " << t.getDepart() << std::endl;
         std::cout << "Num du point d'arrivee: " << t.getArrivee() << std::endl;
         std::cout << "Nom du trajet : " << t.getNomTrajet() << std::endl;
@@ -50,13 +51,7 @@ Graphe::Graphe(std::string nomfichier)
     }
 }
 
-///Faire l'éventuel affichage (fonctionnalité) des éléments du Graphe
 Graphe::~Graphe() {}
-
-/*void Graphe::affichage()
-{
-
-}*/
 
 std::vector<Point> Graphe::rendre_listeP()
 {
@@ -68,79 +63,95 @@ std::vector<Trajet> Graphe::rendre_listeT()
     return m_trajets;
 }
 
-void Graphe::BFS()
+void Graphe::BFS(int choixAffichage)
 {
     int valSommetDepart;
     std::queue<Point> file;
     Point point;
-    std::vector<Point> vectPredecesseurs;
-    int pointFinal = 0;
-    std::cout << "entrez le sommet de depart d'etude entre 1 et 37) de la station afin" << std::endl << "de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl;
+    std::cout << "entrez le sommet de depart d'etude entre 1 et 37 de la station afin" << std::endl << "de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl;
     do
     {
         std::cin >>valSommetDepart;
     }
     while(valSommetDepart < 1 || valSommetDepart > 37);
 
-    for(auto elem : m_points)
-        elem.setCouleur(false);
-    for(auto elem : m_points)
+    for(auto& elem : m_points)
     {
-        vectPredecesseurs.push_back(elem);
+        elem.setCouleur(0);
+        elem.setBFS(-1);
     }
-
-    Point pointOrigine = m_points[valSommetDepart - 1];
-
-    std::cout << pointOrigine.getNumPoint() << std::endl;
-
-    file.push(pointOrigine);
-    m_points[valSommetDepart - 1].setCouleur(true);
-    while(!file.empty())
+    file.push(m_points[valSommetDepart - 1]); //On push le Point de départ
+    m_points[valSommetDepart - 1].setCouleur(1); //On considère le point de départ comme traité
+    while(!file.empty()) //Tant que la file n'est pas vide...
     {
-        Point debut = file.front();
-        file.pop();
-        debut = m_points[debut.getNumPoint() - 1];
-        for(auto elem : debut.getAdj())
+        Point debut = file.front(); //On récupère le premier élément de la file
+        //debut = m_points[debut.getNumPoint() - 1];
+        for(auto elem : m_trajets)
         {
-            if(m_points[elem.getNumPoint() - 1].getCouleur() == false)
+            if(elem.getPointDepart().getNumPoint() == debut.getNumPoint())
             {
-                file.push(elem);
-                m_points[elem.getNumPoint() - 1].setCouleur(true);
-                vectPredecesseurs[elem.getNumPoint() - 1].setNumPoint(debut.getNumPoint());
+                if(m_points[elem.getPointArrivee().getNumPoint() - 1].getCouleur() == 0)
+                {
+                    file.push(elem.getPointArrivee());
+                    m_points[elem.getPointArrivee().getNumPoint() - 1].setCouleur(1);
+                    m_points[elem.getPointArrivee().getNumPoint() - 1].setBFS(debut.getNumPoint());
+                }
             }
         }
+        file.pop(); //On retire le premier élément de la file
+        m_points[debut.getNumPoint() - 1].setCouleur(2);
     }
-    for(auto elem : vectPredecesseurs)
-        std::cout << vectPredecesseurs[elem.getNumPoint() - 1].getNumPoint() << std::endl;
-
     //Affichage du BFS
-    /*system("cls");
-    std::cout << "Trajets suivant le moins de pistes et remontés à partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
-    for(auto elem : vectPredecesseurs)
+    if(choixAffichage == 1)
     {
-        //On recupere la valeur du predecesseur
-        int predecesseur = elem.getNumPoint() ;
-
-        //si le sommet a un predecesseur
-        if(predecesseur >= 1 && predecesseur <= 37)
+        system("cls");
+        std::cout << "Trajets suivant le moins de pistes et remontes a partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
+        for(int i=1; i < m_points.size() + 1; i++)
         {
-            //On affiche le sommet d'arrivee du parcours
-            std::cout << pointFinal;
-
-            //Tant qu'il y a toujours un predecesseur
-            while(predecesseur >= 1 && predecesseur <= 37)
+            int anteBfs = m_points[i - 1].getBFS();//on recupere le predecesseur de chaque sommet
+            if(anteBfs!=(-1))//si le sommet a des prédecesseur
             {
-                std::cout << " <-- ";
-
-                //on affiche le predecesseur
-                std::cout << predecesseur;
-
-                //On recupere le predecesseur du predecesseur
-                predecesseur = vectPredecesseurs[predecesseur].getNumPoint();
-
+                std::cout<<m_points[i - 1].getNumPoint(); // on écrit le sommet
+                while(true)
+                {
+                    if(anteBfs!=(-1))   // si le bfs n'est pas égal a -1
+                    {
+                        std::cout<<" <-- "<< anteBfs;   // on écrit le result
+                        anteBfs= m_points[anteBfs - 1].getBFS();//on recupere le predecesseur de chaque sommet
+                    }
+                    else break;
+                }
+                std::cout<<std::endl;
+            }
+        }
+        std::cout<<"----------------------------"<<std::endl;
+    }
+    if(choixAffichage == 2)
+    {
+        int pointFinal;
+        std::cout << "entrez le sommet d'arrive entre 1 et 37 de la station" << std::endl;
+        do
+        {
+            std::cin >>pointFinal;
+        }
+        while(pointFinal < 1 || pointFinal > 37);
+        system("cls");
+        std::cout << "Trajet suivant le moins de pistes et remontes" << std::endl;
+        int anteBfs = m_points[pointFinal - 1].getBFS();//on recupere le predecesseur de chaque sommet
+        if(anteBfs!=(-1))//si le sommet a des prédecesseur
+        {
+            std::cout<<m_points[pointFinal - 1].getNumPoint(); // on écrit le sommet
+            while(true)
+            {
+                if(anteBfs!=(-1))   // si le bfs n'est pas égal a -1
+                {
+                    std::cout<<" <-- "<< anteBfs;   // on écrit le result
+                    anteBfs= m_points[anteBfs - 1].getBFS();//on recupere le predecesseur de chaque sommet
+                }
+                else break;
             }
             std::cout<<std::endl;
         }
-        pointFinal++;
-    }*/
+    std::cout<<"----------------------------"<<std::endl;
+    }
 }

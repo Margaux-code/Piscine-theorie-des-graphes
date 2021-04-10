@@ -74,15 +74,15 @@ void menu()
             break;
         case 3:
             system("cls");
-            case3(trajets, points);
+            case3(trajets, points, g);
             break;
         case 4:
             system("cls");
-            case4();
+            case4(trajets, points, g);
             break;
         case 5:
             system("cls");
-            case5(trajets, points);
+            case5(trajets, points, g);
             break;
         }
     }
@@ -163,7 +163,7 @@ void case2()
     while(choix_case2!=1 && choix_case2!=2);
 }
 
-void case3(std::vector<Trajet> trajets, std::vector<Point> points)
+void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -189,14 +189,34 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points)
             menu();
             break;
         case 2:
-            debut_dikjstra(points, trajets);
+            std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << "2. de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << "1. de temps ?" << std::endl;
+            int choixAlgo = 0;
+            do
+            {
+                std::cin >> choixAlgo;
+                switch(choixAlgo)
+                {
+                    case 1:
+                    {
+                        int choix4 = 1;
+                        g.BFS(choix4);
+                        break;
+                    }
+                    case 2:
+                    {
+                        debut_dikjstra(points, trajets); ///ATTENTION C'EST A CHANGER MARGAUX !
+                        break;
+                    }
+                }
+            }
+            while(choixAlgo != 1 && choixAlgo != 2);
             break;
         }
     }
     while(choix_case3!=1 && choix_case3!=2);
 }
 
-void case4()
+void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -222,14 +242,34 @@ void case4()
             menu();
             break;
         case 2:
-
+            std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << "2. de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << "1. de temps ?" << std::endl;
+            int choixAlgo = 0;
+            do
+            {
+                std::cin >> choixAlgo;
+                switch(choixAlgo)
+                {
+                    case 1:
+                    {
+                        int choix4 = 2;
+                        g.BFS(choix4);
+                        break;
+                    }
+                    case 2:
+                    {
+                    debut_dikjstra(points, trajets);
+                    break;
+                    }
+                }
+            }
+            while(choixAlgo != 1 && choixAlgo != 2);
             break;
         }
     }
     while(choix_case4!=1 && choix_case4!=2);
 }
 
-void case5(std::vector<Trajet> trajets, std::vector<Point> points)
+void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -255,7 +295,7 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points)
             menu();
             break;
         case 2:
-        selection_piste(trajets,points);
+        //selection_piste(trajets,points);
 
             break;
         }

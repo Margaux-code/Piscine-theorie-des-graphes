@@ -1,3 +1,6 @@
+
+#include <iostream>
+#include <windows.h>
 #include "Points.h"
 
 Point::Point() {}
@@ -82,16 +85,21 @@ void Point::setAltitude(double altitude)
  }
 
  ///Méthodes pour le BFS
- void Point::setCouleur(bool noir)
+ void Point::setCouleur(int color)
  {
-     m_color = noir;
+     m_color = color;
  }
- bool Point::getCouleur()const
+
+ int Point::getCouleur()const
  {
      return m_color;
  }
 
-std::vector<Point> Point::getAdj()
+ void Point::setBFS(int bfs)
 {
-    return m_adjacents;
+    m_bfs = bfs;
+}
+int Point::getBFS()
+{
+    return m_bfs;
 }

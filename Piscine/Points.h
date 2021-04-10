@@ -16,8 +16,9 @@ private:
     int m_num_Predecesseur;
     std::string m_nom_trajet;
     //Attributs pour le BFS
-    bool m_color;
-    std::vector <Point> m_adjacents;
+    int m_color;
+    std::vector<Point> m_adjacents;
+    int m_bfs;
 public :
 
     ~Point();
@@ -39,9 +40,11 @@ public :
     void setNomTrajet(std::string tratra);
     std::string getNomTrajet();
     //Méthodes pour le BFS
-    void setCouleur(bool noir);
-    bool getCouleur()const;
-    std::vector<Point> getAdj();
+    void setCouleur(int color);
+    int getCouleur()const;
+
+    void setBFS(int bfs);
+    int getBFS();
 };
 
 #endif // POINTS_H_INCLUDED
