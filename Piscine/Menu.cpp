@@ -45,10 +45,10 @@ void menu()
     std::cout << "2/ Choisir un point";
     PutCouleur(3,0);
     gotoligcol(16,0);
-    std::cout << "3/Afficher l itineraire de plus rapide" ;
+    std::cout << "3/ Afficher l itineraire de plus rapide" ;
     PutCouleur(3,0);
     gotoligcol(19,0);
-    std::cout << "4/Afficher tous les plus courts chemins d un point" ;
+    std::cout << "4/ Afficher tous les plus courts chemins d un point" ;
     PutCouleur(3,0);
     gotoligcol(22,0);
     std::cout << "5/ Calculer le chemin le plus interessant entre deux points";
@@ -103,7 +103,7 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     PutCouleur(3,0);
     gotoligcol(13,0);
     std::cout << "Si vous souhaitez poursuivre sur ce menu, entrez 2.";
-    PutCouleur(3,0);
+    PutCouleur(15,0);
     gotoligcol(16,0);
     int choix_case1 = 0;
     do
@@ -118,8 +118,13 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             menu();
             break;
         case 2:
+            system("cls");
             int choixTrajet;
+            PutCouleur(4,0);
+            gotoligcol(1,0);
             std::cout << "Veuillez entrer le numero du trajet dont vous souhaitez connaitre l'origine et l'arrivee." << std::endl;
+            PutCouleur(15,0);
+            gotoligcol(3,0);
             do
             {
                 std::cin >> choixTrajet;
@@ -129,11 +134,17 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             {
                 if(choixTrajet == elem.getNumTrajet())
                 {
-                    std::cout << "Point de depart (" << elem.getDepart() << ") ; Point d'arrivee (" << elem.getArrivee() << ") du trajet " << elem.getNumTrajet() << std::endl;
+                    gotoligcol(6,0);
+                    PutCouleur(3,0);
+                    std::cout << "Point(s) de depart (" << elem.getDepart() << ") , Point(s) d'arrivee (" << elem.getArrivee() << ") du trajet " << elem.getNumTrajet() <<"."<< std::endl;
                 }
             }
             int retour;
-        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        gotoligcol(9,0);
+        PutCouleur(3,0);
+        std::cout << "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl;
+        gotoligcol(12,0);
+        PutCouleur(15,0);
         do
         {
             std::cin >> retour;
@@ -163,7 +174,7 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     PutCouleur(3,0);
     gotoligcol(13,0);
     std::cout << "Si vous souhaitez poursuivre sur ce menu, entrez 2.";
-    PutCouleur(3,0);
+    PutCouleur(15,0);
     gotoligcol(16,0);
     int choix_case2 = 0;
     do
@@ -178,8 +189,13 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             menu();
             break;
         case 2:
+        system("cls");
         int choixPoint;
+        PutCouleur(4,0);
+        gotoligcol(1,0);
         std::cout << "Veuillez entrer le numero du point dont vous souhaitez connaitre les trajets entrants  et ceux sortants." << std::endl;
+        PutCouleur(15,0);
+        gotoligcol(3,0);
         do
         {
             std::cin >> choixPoint;
@@ -193,9 +209,9 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 Point_a_afficher = sommets;
             }
         }
-
-        std::cout<<std::endl<<"On part du noeud "<< Point_a_afficher.getNom() <<std::endl;
-        std::cout << "Les arcs qui partent de ce noeud sont " <<std ::endl;
+        PutCouleur(3,0);
+        std::cout<<std::endl<<"On part du noeud "<< Point_a_afficher.getNom() << "." <<std::endl;
+        std::cout <<std::endl<< "Les arcs qui partent de ce noeud sont: " <<std ::endl;
         for (auto arcs : trajets)
         {
             if (Point_a_afficher.getNumPoint()== arcs.getDepart())
@@ -213,22 +229,23 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             }
 
         }
-        std::cout << "Les sommets adjacents sont " <<std ::endl;
+        std::cout<<std::endl<< "Les sommets adjacents sont " <<std ::endl;
         for (auto arcs : trajets)
         {
-            if (Point_a_afficher.getNumPoint()== arcs.getArrivee())
-            {
-                Point po = arcs.getPointDepart();
-                std::cout << "  " << po.getNom()<<std::endl;
-            }
             if (Point_a_afficher.getNumPoint()== arcs.getDepart())
             {
                 Point po = arcs.getPointArrivee();
-                std::cout <<po.getNom()<<std::endl;
+                std::cout << "Pour les trajets entrants : "<<po.getNom()<<std::endl;
+            }
+            if (Point_a_afficher.getNumPoint()== arcs.getArrivee())
+            {
+                Point po = arcs.getPointDepart();
+                std::cout << "Pour les trajets sortants : "<< po.getNom()<<std::endl;
             }
         }
         int retour;
-        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        std::cout<<std::endl<< "voulez-vous retourner au menu ?     1/ Oui    2/ Non" <<std::endl<< std::endl;
+        PutCouleur(15,0);
         do
         {
             std::cin >> retour;
