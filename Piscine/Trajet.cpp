@@ -89,6 +89,11 @@ void Trajet::setDuree()
     if(m_typeTransport.compare("BUS") == 0)
         m_duree = 30;
 }
+ void Trajet::setDureeSki(double duree)
+ {
+     m_duree = duree;
+ }
+
 
 std::string Trajet::getTransport() const
 {

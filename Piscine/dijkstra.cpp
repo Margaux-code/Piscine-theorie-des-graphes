@@ -14,7 +14,7 @@ void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
     int arrivee;
     std::cin >> arrivee;
     std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
-
+    afficher_chemin(chemin);
 }
 
 
@@ -98,13 +98,13 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
     //Initialiser
     for(unsigned int i=0; i<TousPoints.size(); i++)
     {
-        TousPoints[i].setBool(false);
-        TousPoints[i].setChemin(100000);
-        if (TousPoints[i].getNumPoint()==debut)
+        TousPoints[i].setBool(false); //Mettre tous les points comme non visiter
+        TousPoints[i].setChemin(100000); // Et  mettre la distance à infini (une valeur tres grande)
+        if (TousPoints[i].getNumPoint()==debut) //INitialiser le premier sommet à une distance de 0
         {
             TousPoints[i].setChemin(0);
             std::pair<Point,double> tampon(TousPoints[i], 0);
-            file_attente.push_back(tampon);
+            file_attente.push_back(tampon); //Et le mettre dnas la file d'attente
         }
     }
 ///Boucle principale de l'algorithme
@@ -116,7 +116,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
         int interressante =100000; // Valeur arbitrairement grande pour que n'importe quelle valeur soit plus petite
         int actuelle;
         int numero_sommet;
-        for (unsigned int i=0; i< file_attente.size(); i++ ) //Demander à ben comment marche cette fonction
+        for (unsigned int i=0; i< file_attente.size(); i++ )
         {
             actuelle = file_attente[i].second;
             if (actuelle < interressante)
