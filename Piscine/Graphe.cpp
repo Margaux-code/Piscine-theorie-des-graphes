@@ -106,7 +106,7 @@ void Graphe::BFS(int choixAffichage)
     {
         system("cls");
         std::cout << "Trajets suivant le moins de pistes et remontes a partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
-        for(int i=1; i < m_points.size() + 1; i++)
+        for(unsigned int i=1; i < m_points.size() + 1; i++)
         {
             int anteBfs = m_points[i - 1].getBFS();//on recupere le predecesseur de chaque sommet
             if(anteBfs!=(-1))//si le sommet a des prédecesseur

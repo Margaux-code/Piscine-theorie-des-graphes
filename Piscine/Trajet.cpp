@@ -37,7 +37,7 @@ Trajet::Trajet(int numTrajet, std::string nomTrajet, int valDepart, int valArriv
 }
  void Trajet::setPoints(std::vector<Point> liste_Points)
  {
-     for(int i =0; i<liste_Points.size();i++)
+     for(unsigned int i =0; i<liste_Points.size();i++)
      {
          if (liste_Points[i].getNumPoint() == m_valDepart)
          {
