@@ -35,7 +35,7 @@ std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> Tous
     while (actuel.getNumPoint()!= debut)
     {
         int predecesseur = actuel.getPredecesseur();
-        for (int i=0; i<TousPoints.size(); i++)
+        for (unsigned int i=0; i<TousPoints.size(); i++)
         {
             if (TousPoints[i].getNumPoint()==predecesseur)
             {
@@ -54,7 +54,7 @@ std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> Tous
 
 void afficher_chemin(std::vector<Point> Chemin_final)
 {
-    int fin = Chemin_final.size();
+
     if (Chemin_final[0].getChemin()==100000)
     {
         PutCouleur(15,0);
@@ -95,7 +95,8 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
     //initialiser une file d'attente
     std::vector<std::pair< Point, double>> file_attente;
     std::vector<Point> TousPoints = TousPoint;
-    for(int i=0; i<TousPoints.size(); i++)
+    //Initialiser
+    for(unsigned int i=0; i<TousPoints.size(); i++)
     {
         TousPoints[i].setBool(false);
         TousPoints[i].setChemin(100000);
@@ -115,7 +116,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
         int interressante =100000; // Valeur arbitrairement grande pour que n'importe quelle valeur soit plus petite
         int actuelle;
         int numero_sommet;
-        for (int i=0; i< file_attente.size(); i++ ) //Demander à ben comment marche cette fonction
+        for (unsigned int i=0; i< file_attente.size(); i++ ) //Demander à ben comment marche cette fonction
         {
             actuelle = file_attente[i].second;
             if (actuelle < interressante)
@@ -126,7 +127,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
             }
         }
         //Marquer le sommet récuperer comme true car on est en train de l'explorer
-        for (int i =0; i<TousPoints.size(); i++)
+        for (unsigned int i =0; i<TousPoints.size(); i++)
         {
             if (file_attente[numero_sommet].first.getNumPoint()==TousPoints[i].getNumPoint())
             {
@@ -138,12 +139,12 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
 
         int place;
 //Recuperer tous les antecedents grâce aux trajets puis les rajouter dans la file d'attente si leur booléen est faux
-        for(int i=0; i< TousTrajets.size(); i++)
+        for(unsigned int i=0; i< TousTrajets.size(); i++)
         {
             if (TousTrajets[i].getDepart() == file_attente[numero_sommet].first.getNumPoint())
             {
                 Point successeur = TousTrajets[i].getPointArrivee();
-                for (int j=0; j< TousPoints.size(); j++)
+                for (unsigned int j=0; j< TousPoints.size(); j++)
                 {
                     if (TousPoints[j].getNumPoint()==successeur.getNumPoint())
                     {
@@ -156,7 +157,6 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
                 if (bouboul == false)
                 {
                     //Calcul de la durée
-                    int totot =TousTrajets[i].getDuree();
                     int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first.getChemin();
                     if (chemin < TousPoints[place].getChemin())
                     {

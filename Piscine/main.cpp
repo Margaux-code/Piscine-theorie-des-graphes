@@ -15,7 +15,7 @@ int main()
 
 
     std::vector<Point> fileBFS;
-    int sommet =11;
+
 //    afficher_noeuds(sommet,points,trajets);
     //g.BFS();
     return 0;
