@@ -56,7 +56,7 @@ void menu()
     gotoligcol(25,0);
 
     int choix = 0;
-    Graphe g{"data_arcs.txt"};
+    Graphe g("data_arcs.txt");
     std::vector<Point> points = g.rendre_listeP();
     std::vector<Trajet> trajets=g.rendre_listeT();
     do
@@ -68,11 +68,11 @@ void menu()
     {
     case 1:
         system("cls");
-        case1();
+        case1(trajets, points, g);
         break;
     case 2:
         system("cls");
-        case2();
+        case2(trajets, points, g);
         break;
     case 3:
         system("cls");
@@ -89,7 +89,7 @@ void menu()
     }
 }
 
-void case1()
+void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -114,22 +114,42 @@ void case1()
     switch(choix_case1)
         {
         case 1:
+            system("cls");
             menu();
             break;
         case 2:
-            /*for(auto t : m_trajets)
+            int choixTrajet;
+            std::cout << "Veuillez entrer le numero du trajet dont vous souhaitez connaitre l'origine et l'arrivee." << std::endl;
+            do
             {
-                std::cout << "num du Trajet : " << t.getNumTrajet() << std::endl;
-                std::cout << "Nom du trajet : " << t.getNomTrajet() << std::endl;
-                std::cout << std::endl;
-                int choixTrajet = 0;
-                std::cout << "Veuillez entrer le numero du trajet dont vous souhaitez connaitre l'origine et l'arrivee.";
                 std::cin >> choixTrajet;
-            }*/
+            }
+            while(choixTrajet < 1 || choixTrajet > 95);
+            for(auto elem : trajets)
+            {
+                if(choixTrajet == elem.getNumTrajet())
+                {
+                    std::cout << "Point de depart (" << elem.getDepart() << ") ; Point d'arrivee (" << elem.getArrivee() << ") du trajet " << elem.getNumTrajet() << std::endl;
+                }
+            }
+            int retour;
+        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        do
+        {
+            std::cin >> retour;
+        }
+        while(retour!=1 && retour!=2);
+        if(retour == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else
             break;
+        }
 }
 
-void case2()
+void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
@@ -154,12 +174,74 @@ void case2()
     switch(choix_case2)
         {
         case 1:
+            system("cls");
             menu();
             break;
         case 2:
-
-            break;
+        int choixPoint;
+        std::cout << "Veuillez entrer le numero du point dont vous souhaitez connaitre les trajets entrants  et ceux sortants." << std::endl;
+        do
+        {
+            std::cin >> choixPoint;
         }
+        while(choixPoint < 1 || choixPoint > 37);
+        Point Point_a_afficher;
+        for (auto sommets : points)
+        {
+            if (sommets.getNumPoint() == choixPoint)
+            {
+                Point_a_afficher = sommets;
+            }
+        }
+
+        std::cout<<std::endl<<"On part du noeud "<< Point_a_afficher.getNom() <<std::endl;
+        std::cout << "Les arcs qui partent de ce noeud sont " <<std ::endl;
+        for (auto arcs : trajets)
+        {
+            if (Point_a_afficher.getNumPoint()== arcs.getDepart())
+            {
+                std::cout << arcs.getNomTrajet()<<std::endl;
+            }
+
+        }
+        std::cout << "Les arcs qui arrivent de ce noeud sont " <<std ::endl;
+        for (auto arcs : trajets)
+        {
+            if (Point_a_afficher.getNumPoint()== arcs.getArrivee())
+            {
+                std::cout << arcs.getNomTrajet()<<std::endl;
+            }
+
+        }
+        std::cout << "Les sommets adjacents sont " <<std ::endl;
+        for (auto arcs : trajets)
+        {
+            if (Point_a_afficher.getNumPoint()== arcs.getArrivee())
+            {
+                Point po = arcs.getPointDepart();
+                std::cout << "  " << po.getNom()<<std::endl;
+            }
+            if (Point_a_afficher.getNumPoint()== arcs.getDepart())
+            {
+                Point po = arcs.getPointArrivee();
+                std::cout <<po.getNom()<<std::endl;
+            }
+        }
+        int retour;
+        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        do
+        {
+            std::cin >> retour;
+        }
+        while(retour!=1 && retour!=2);
+        if(retour == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else
+            break;
+    }
 }
 
 void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
@@ -187,10 +269,11 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     switch(choix_case3)
         {
         case 1:
+            system("cls");
             menu();
             break;
         case 2:
-            std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << "2. de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << "1. de temps ?" << std::endl;
+            std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << "1. de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << "2. de temps ?" << std::endl;
             int choixAlgo = 0;
             do
             {
@@ -211,6 +294,20 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 }
             }
             while(choixAlgo != 1 && choixAlgo != 2);
+
+int retour;
+        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        do
+        {
+            std::cin >> retour;
+        }
+        while(retour!=1 && retour!=2);
+        if(retour == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else
             break;
         }
 }
@@ -240,6 +337,7 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     switch(choix_case4)
     {
     case 1:
+        system("cls");
         menu();
         break;
     case 2:
@@ -256,6 +354,19 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
         {
             int choix4 = 2;
             g.BFS(choix4);
+            int retour;
+        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        do
+        {
+            std::cin >> retour;
+        }
+        while(retour!=1 && retour!=2);
+        if(retour == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else
             break;
         }
         case 2:
@@ -278,24 +389,23 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             while (arrivee<0 && arrivee >37);
             std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
             afficher_chemin(chemin);
-            break;
+            int retour;
+        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        do
+        {
+            std::cin >> retour;
         }
-        }
-        PutCouleur(1,0);
-        std::cout<<"Pour retourner au menu appuyer sur 1 pour quitter appuyer sur n'importe quelle touche"<< std::endl;
-        int bulle;
-        std::cin>> bulle;
-        if (bulle==1)
+        while(retour!=1 && retour!=2);
+        if(retour == 1)
         {
             system("cls");
             menu();
-
         }
-
-        break;
+        else
+            break;
+            }
+        }
     }
-
-
 }
 
 void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
@@ -323,11 +433,25 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     switch(choix_case5)
         {
         case 1:
+            system("cls");
             menu();
             break;
         case 2:
             //selection_piste(trajets,points);
 
+            int retour;
+        std::cout << "voulez-vous retournez au menu ?     1.Oui    2.Non" << std::endl;
+        do
+        {
+            std::cin >> retour;
+        }
+        while(retour!=1 && retour!=2);
+        if(retour == 1)
+        {
+            system("cls");
+            menu();
+        }
+        else
             break;
         }
 }

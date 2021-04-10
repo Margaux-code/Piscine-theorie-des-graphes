@@ -32,7 +32,7 @@ Graphe::Graphe(std::string nomfichier)
         n.setDuree();
         m_trajets.push_back(n);
     }
-   /* for(auto p : m_points)
+    /*for(auto p : m_points)
     {
         std::cout << "num point : " << p.getNumPoint() << std::endl;
         std::cout << "Nom du point : " << p.getNom() << std::endl;

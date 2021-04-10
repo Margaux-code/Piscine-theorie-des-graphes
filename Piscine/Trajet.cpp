@@ -17,6 +17,7 @@ int Trajet::getArrivee()
   {
       return m_depart;
   }
+
     Point Trajet::getPointArrivee()
     {
         return m_arrivee;
