@@ -9,16 +9,16 @@ COORD convertToCoord(int ligne, int colonne)
 {
     COORD mycoord;
 
-mycoord.X = colonne;
-mycoord.Y = ligne;
+    mycoord.X = colonne;
+    mycoord.Y = ligne;
 
-return mycoord;
+    return mycoord;
 }
 
 void gotoligcol(int ligne, int colonne)
 {
-COORD mycoord = convertToCoord(ligne,colonne);
-SetConsoleCursorPosition(GetStdHandle( STD_OUTPUT_HANDLE), mycoord);
+    COORD mycoord = convertToCoord(ligne,colonne);
+    SetConsoleCursorPosition(GetStdHandle( STD_OUTPUT_HANDLE), mycoord);
 }
 
 void PutCouleur(int couleurTexte, int couleurFond)
@@ -196,17 +196,17 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 std::cin >> choixAlgo;
                 switch(choixAlgo)
                 {
-                    case 1:
-                    {
-                        int choix4 = 1;
-                        g.BFS(choix4);
-                        break;
-                    }
-                    case 2:
-                    {
-                        debut_dikjstra(points, trajets); ///ATTENTION C'EST A CHANGER MARGAUX !
-                        break;
-                    }
+                case 1:
+                {
+                    int choix4 = 1;
+                    g.BFS(choix4);
+                    break;
+                }
+                case 2:
+                {
+
+                    break;
+                }
                 }
             }
             while(choixAlgo != 1 && choixAlgo != 2);
@@ -236,37 +236,66 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     do
     {
         std::cin >> choix_case4;
-        switch(choix_case4)
-        {
-        case 1:
-            menu();
-            break;
-        case 2:
-            std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << "2. de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << "1. de temps ?" << std::endl;
-            int choixAlgo = 0;
-            do
-            {
-                std::cin >> choixAlgo;
-                switch(choixAlgo)
-                {
-                    case 1:
-                    {
-                        int choix4 = 2;
-                        g.BFS(choix4);
-                        break;
-                    }
-                    case 2:
-                    {
-                    debut_dikjstra(points, trajets);
-                    break;
-                    }
-                }
-            }
-            while(choixAlgo != 1 && choixAlgo != 2);
-            break;
-        }
     }
     while(choix_case4!=1 && choix_case4!=2);
+    switch(choix_case4)
+    {
+    case 1:
+        menu();
+        break;
+    case 2:
+        std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << "1. de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << "2. de temps ?" << std::endl;
+        int choixAlgo = 0;
+        do
+        {
+            std::cin >> choixAlgo;
+        }
+        while(choixAlgo != 1 && choixAlgo != 2);
+        switch(choixAlgo)
+        {
+        case 1:
+        {
+            int choix4 = 2;
+            g.BFS(choix4);
+            break;
+        }
+        case 2:
+        {
+            PutCouleur(15,0);
+            std::cout <<" Choisissez votre point de depart "<<std::endl;
+            int depart;
+            do
+            {
+                std::cin >> depart;
+            }
+            while (depart<0 && depart >37);
+
+            std::cout << "Choisissez votre point arrivee" <<std::endl;
+            int arrivee;
+            do
+            {
+                std::cin >> arrivee;
+            }
+            while (arrivee<0 && arrivee >37);
+            std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
+            afficher_chemin(chemin);
+            break;
+        }
+        }
+          PutCouleur(1,0);
+        std::cout<<"Pour retourner au menu appuyer sur 1 pour quitter appuyer sur n'importe quelle touche"<< std::endl;
+        int bulle;
+        std::cin>> bulle;
+        if (bulle==1)
+        {   system("cls");
+              menu();
+
+        }
+
+        break;
+    }
+
+
 }
 
 void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
@@ -295,7 +324,7 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             menu();
             break;
         case 2:
-        //selection_piste(trajets,points);
+            //selection_piste(trajets,points);
 
             break;
         }

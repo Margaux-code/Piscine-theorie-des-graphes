@@ -2,6 +2,8 @@
 #include "header.h"
 #include "Menu.h"
 #include "Points.h"
+#include <iostream>
+#include <windows.h>
 
 void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 {
@@ -55,10 +57,12 @@ void afficher_chemin(std::vector<Point> Chemin_final)
     int fin = Chemin_final.size();
     if (Chemin_final[0].getChemin()==100000)
     {
+        PutCouleur(15,0);
         std::cout <<"Malheureusement relier ces deux points avec vos préférences n'est pas possible :( " <<std::endl;
     }
     else
     {
+    PutCouleur(9,0);
         std::cout<< "Pour ce chemin il va valloir passer par ces points :" << std::endl;
 
         for (int i = (Chemin_final.size()-1); i>=0; i--)
@@ -67,13 +71,14 @@ void afficher_chemin(std::vector<Point> Chemin_final)
             std::cout <<" -> "<< Chemin_final[i].getNom() ;
 
         }
+
         std::cout << std::endl;
         std::cout<< "Pour cela il faut prendre les trajets suivants :"<<std::endl;
         for (int i = (Chemin_final.size()-1); i>=0; i--)
         {
 
 
-            std::cout <<" -> "<< Chemin_final[i].getNomTrajet() ;
+            std::cout <<"   "<< Chemin_final[i].getNomTrajet() ;
 
         }
         std::cout<<std::endl;
@@ -174,6 +179,5 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
 
     }
     std::vector<Point> Chemin_final = Trouver_chemin(debut, arrivee,TousPoints);
-    afficher_chemin(Chemin_final);
     return Chemin_final;
 }

@@ -3,7 +3,7 @@
 #include <vector>
 #include "Graphe.h"
 
-
+void PutCouleur(int couleurTexte, int couleurFond);
 void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g);
 void menu();
 void case1();
