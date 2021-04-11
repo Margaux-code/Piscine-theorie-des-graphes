@@ -7,6 +7,7 @@
 
 void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousPoints)
 {
+    // Initialisation du fichier pour la sauvegarde
     std::ifstream temp("temp.txt");
     if(temp)
     {
@@ -52,7 +53,7 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
         if (a == 1)
         {
             numTrajet = i + 1;
-            double temps = debutant[i].getDuree(); /// A ecrire dans les fichiers
+            double temps = debutant[i].getDuree(); //Sauvegarde du fichier
             fichierT << "Trajet n°" << numTrajet << " : " << temps << " minutes." << std::endl;
         }
 
@@ -70,7 +71,7 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
                 if (a == 2)
         {
             numTrajet = i + 1;
-            double temps = intermediaire[i].getDuree(); /// A ecrire dans les fichiers
+            double temps = intermediaire[i].getDuree(); //Sauvegarde du fichier
             fichierT << "Trajet n°" << numTrajet << " : " << temps << " minutes." << std::endl;
         }
 
@@ -90,7 +91,7 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
           if (a == 3)
         {
             numTrajet = i + 1;
-            double temps = ski_plaisir[i].getDuree(); /// A ecrire dans les fichiers
+            double temps = ski_plaisir[i].getDuree(); //Sauvegarde du fichier
             fichierT << "Trajet n°" << numTrajet << " : " << temps << " minutes." << std::endl;
         }
 
@@ -116,10 +117,10 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
         afficher_chemin(chemin);
         break;
     case 2 :
-        debut_dikjstra( TousPoints, intermediaire);
+        debut_dikjstra( TousPoints, intermediaire); // On lance dikjstra avec le nouveau vecteur
         break;
     case 3 :
-        debut_dikjstra( TousPoints, ski_plaisir);
+        debut_dikjstra( TousPoints, ski_plaisir);// On lance dikjstra avec le nouveau vecteur
         break;
     }
 

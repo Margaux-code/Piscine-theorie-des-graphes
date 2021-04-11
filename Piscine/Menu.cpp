@@ -387,6 +387,8 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 ///Fonction d'affichage des algo BFS et Dijkstra à partir d'un point vers l'ensemble des autres points
 void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
+    std::vector<Point> h;
+    std::vector<Point> p;
     PutCouleur(15,0);
     gotoligcol(3,50);
     std::cout << "Choisir un trajet";
@@ -471,6 +473,13 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                         system("cls");
                         PutCouleur(4,0);
                         gotoligcol(1,0);
+                        std::cout << "Avez vous une contrainte de temps particuliere pour arriver a l'heure a votre dejeuner ? 1/Oui 2/Non"<<std::endl;
+                        int b;
+                        do
+                        {
+                            std::cin >>b;
+                        }while (b!=1 && b!=2);
+
                         std::cout << "Choisissez un sommet entre 1 et 37 "<<std::endl<<std::endl;
                         PutCouleur(15,0);
                         int a;
@@ -478,7 +487,28 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                         {   std::cin>>a;
                         }while (a<0 || a>37); //conditions de la boucle de blindage
                         std::cout<<std::endl;
-                        std::vector<Point> p = dijkstra(a, -1,points,trajets);
+
+                        switch (b)
+                        {
+                        case 1 :
+                            std::cout << "Dans combien de temps est votre dejeuner ? (a partir de 10 minutes sinon dejeunez la ou vous etes)" <<std::endl;
+                            int temps;
+                            do
+                            {
+                                std::cin>>temps;
+                            }while (temps <10);
+                            temps = -temps;
+                            h = dijkstra(a, temps,points,trajets);// On met l'arrivee en negatif pour que dikstra montre les temps et pas seulement un itineraire
+                            break;
+                        case 2 :
+                              p = dijkstra(a, -1,points,trajets);// On met l'arrivee en negatif pour que dikstra montre tout les temps et pas seulement un itineraire
+                              break;
+
+                        }
+
+
+
+
                         break;
                     }
                     }
@@ -649,11 +679,12 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     while(choix_case4!=1 && choix_case4!=2); //conditions de la boucle de blindage
 }
 
-///
+
 void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
     gotoligcol(3,50);
+    //Affichage
     std::cout << "Choisir un trajet";
     PutCouleur(4,0);
     gotoligcol(7,0);
@@ -674,6 +705,7 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
         std::cin >> choix_case5;
         if(std::cin.fail())
         {
+            // Affichage
             system("cls");
             std::cerr << "Saisie incorrecte : veuillez recommencer." << std::endl;
             PutCouleur(15,0);
@@ -711,7 +743,7 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 break;
             case 2:
                 system("cls");
-                selection_piste(trajets,points);
+                selection_piste(trajets,points); // Si case 2 on va choisir les settings qu'on prefere dans cette fonction
                 int retour;
                 std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl<< std::endl;
                 PutCouleur(15,0);

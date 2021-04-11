@@ -5,7 +5,7 @@
 
 void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 {
-    gotoligcol(1,0);
+    gotoligcol(1,0); // FOnction qui demande le point de depart et d'arrivee et qui appelle dikjstra
     PutCouleur(4,0);
     std::cout <<"Choisissez votre point de depart. "<<std::endl<<std::endl;
     int depart;
@@ -26,7 +26,7 @@ void afficher_tous_les_temps(std::vector <Point> TousPoints)
 {
     /// Fonction d'affichage pour le menu 3
     PutCouleur(3,0);
-    for (auto elem : TousPoints)
+    for (auto elem : TousPoints) // On affiche tout les temps
     {
         std::cout << "Pour le point " <<elem.getNom()<<" ("<< elem.getNumPoint()<<") : " << elem.getChemin() <<" minutes."<<std::endl;
     }
@@ -35,6 +35,24 @@ void afficher_tous_les_temps(std::vector <Point> TousPoints)
     std::cout <<"Pour voir le chemin complet a prendre allez voir l'itineraire le plus rapide dans le menu 4."<<std::endl;
 
 }
+
+void afficher_certains_temps(int temps,std::vector <Point> TousPoints)
+{
+    /// Fonction d'affichage pour le menu 3
+    PutCouleur(3,0);
+     int unsigned_temps = abs(temps); // on remet la valeur en positif
+     std::cout << "Voila tout les points que vous pouvez atteindre pour etre a l'heure pour votre dejeuner :"<<std::endl;
+    for (auto elem : TousPoints)
+    {
+        if (elem.getChemin()<= unsigned_temps) // On affiche tout les temps qui sont en dessous de cette valeur
+        std::cout << "le point " <<elem.getNom()<<" ("<< elem.getNumPoint()<<") : " << elem.getChemin() <<" minutes."<<std::endl;
+    }
+    std::cout <<std::endl;
+    PutCouleur(3,0);
+    std::cout <<"Pour voir le chemin complet a prendre allez voir l'itineraire le plus rapide dans le menu 4."<<std::endl;
+
+}
+
 
 std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> TousPoints)
 {
@@ -47,7 +65,7 @@ std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> Tous
         if (TousPoints[i].getNumPoint()==arrivee) // On cherche le dernier sommet
         {
             actuel = TousPoints[i];
-            Chemin.push_back(actuel);
+            Chemin.push_back(actuel); // Et on le met dans l'itineraire
         }
     }
 
@@ -82,10 +100,10 @@ void afficher_chemin(std::vector<Point> Chemin_final)
     }
     else
     {
-    PutCouleur(3,0);
+        PutCouleur(3,0);
         std::cout<<std::endl<< "Pour ce chemin il va valloir passer par ces points :" <<std::endl<< std::endl;
 
-        for (int i = (Chemin_final.size()-1); i>=0; i--)
+        for (int i = (Chemin_final.size()-1); i>=0; i--) // On affiche les points du chemin
         {
 
             std::cout <<" -> "<< Chemin_final[i].getNom() ;
@@ -94,7 +112,7 @@ void afficher_chemin(std::vector<Point> Chemin_final)
 
         std::cout << std::endl;
         std::cout<<std::endl<< "Pour cela il faut prendre les trajets suivants :"<<std::endl;
-        for (int i = (Chemin_final.size()-1); i>=0; i--)
+        for (int i = (Chemin_final.size()-1); i>=0; i--) // On affiche les trajets du chemin
         {
 
 
@@ -162,41 +180,41 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
 //Recuperer tous les antecedents grâce aux trajets puis les rajouter dans la file d'attente si leur booléen est faux
         for(unsigned int i=0; i< TousTrajets.size(); i++)
         {
-            if (TousTrajets[i].getDepart() == file_attente[numero_sommet].first.getNumPoint())
+            if (TousTrajets[i].getDepart() == file_attente[numero_sommet].first.getNumPoint()) // On recupere tout les trajets qui commence par le sommet qu'on est en train d'etudier
             {
-                Point successeur = TousTrajets[i].getPointArrivee();
+                Point successeur = TousTrajets[i].getPointArrivee(); // on recupere le point d'arrrivee de ce trajet
                 for (unsigned int j=0; j< TousPoints.size(); j++)
                 {
                     if (TousPoints[j].getNumPoint()==successeur.getNumPoint())
                     {
-                        place=j;
+                        place=j; // On trouve ce point dans le vecteur de tous les points
                     }
 
                 }
                 Point toto = TousPoints[place];
-                bool bouboul = TousPoints[place].getBool();
-                if (bouboul == false)
+                bool bouboul = TousPoints[place].getBool(); // On regarde si son booléen est faux
+                if (bouboul == false) // Si il est faux c'est qu'on la pas encore etudier
                 {
                     //Calcul de la durée
 
-                    int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first.getChemin();
-                    if (chemin < TousPoints[place].getChemin())
+                    int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first.getChemin(); // On regarde le temps qu'il faut pour aller jusqu'a ce sommet
+                    if (chemin < TousPoints[place].getChemin()) // Si ce temps est inferieur au temps qui était déjà marque
                     {
-                        TousPoints[place].setChemin(chemin);
+                        TousPoints[place].setChemin(chemin); // On le remplace
                         //Marque qui est le predecesseur
                         int predecesseur =file_attente[numero_sommet].first.getNumPoint();
                         TousPoints[place].setPredecesseur(predecesseur);
                         TousPoints[place].setNomTrajet(TousTrajets[i].getNomTrajet());
                     }
                     //Mettre dans la file d'attente
-                    std::pair<Point,double> buffer(TousPoints[place], chemin);
+                    std::pair<Point,double> buffer(TousPoints[place], chemin); // Puis finalement on le met dans la file d'attente
                     file_attente.push_back(buffer);
 
                 }
             }
         }
 
- //On enleve le sommet qu'on vient de visiter de la file d'attente
+//On enleve le sommet qu'on vient de visiter de la file d'attente
         file_attente.erase(file_attente.begin()+ numero_sommet);
 
     }
@@ -204,7 +222,17 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
     if (arrivee == -1) //Affiche tous les temps pour le menu 3
     {
         afficher_tous_les_temps(TousPoints);
-    }else
-    Chemin_final = Trouver_chemin(debut, arrivee,TousPoints); // Trouve le chemin entre deux sommets
+    }
+    else
+    {
+        if (arrivee < -1) // Affiche les temps pour le dejeune du menu trois
+        {
+            afficher_certains_temps(arrivee, TousPoints);
+        }
+        else
+            Chemin_final = Trouver_chemin(debut, arrivee,TousPoints); // Trouve le chemin entre deux sommets
+
+    }
+
     return Chemin_final;
 }
