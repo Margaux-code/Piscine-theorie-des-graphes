@@ -1,8 +1,6 @@
 #include "Graphe.h"
 #include "header.h"
 #include "Menu.h"
-#include "Points.h"
-#include <iostream>
 #include <windows.h>
 
 void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
