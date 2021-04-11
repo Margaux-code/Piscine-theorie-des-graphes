@@ -31,6 +31,7 @@ public :
     void setAltitude(double altitude);
     int getNumPoint();
     void setNumPoint(int nvNumPoint);
+    //Méthodes utile pour le Dikjstra
     void setBool(bool marque);
     bool getBool();
     void setChemin(double chemin);
