@@ -15,6 +15,7 @@ void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
     std::cin >> arrivee;
     std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
     afficher_chemin(chemin);
+
 }
 
 void afficher_tous_les_temps(std::vector <Point> TousPoints)
@@ -172,6 +173,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
                 if (bouboul == false)
                 {
                     //Calcul de la durée
+                    int test = TousTrajets[i].getDuree();
                     int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first.getChemin();
                     if (chemin < TousPoints[place].getChemin())
                     {
