@@ -1,10 +1,10 @@
-#include <iostream>
 #include <windows.h>
 #include <algorithm>
 #include "Menu.h"
 #include "header.h"
 #include "Graphe.h"
 
+//fonction nécessaire à la création de coordonnées dans la console
 COORD convertToCoord(int ligne, int colonne)
 {
     COORD mycoord;
@@ -15,12 +15,14 @@ COORD convertToCoord(int ligne, int colonne)
     return mycoord;
 }
 
+//Fonction de déplacement au sein de la console
 void gotoligcol(int ligne, int colonne)
 {
     COORD mycoord = convertToCoord(ligne,colonne);
     SetConsoleCursorPosition(GetStdHandle( STD_OUTPUT_HANDLE), mycoord);
 }
 
+//fonction permettant de colorer le texte
 void PutCouleur(int couleurTexte, int couleurFond)
 {
     HANDLE couleur;
@@ -28,9 +30,11 @@ void PutCouleur(int couleurTexte, int couleurFond)
     SetConsoleTextAttribute(couleur, couleurFond*16+couleurTexte);
 }
 
+
+//Fonction du menu
 void menu()
 {
-
+    ///Affichage du menu en utilisant les fonctions ci-dessus
     PutCouleur(15,0);
     gotoligcol(3,50);
     std::cout << "BIENVENUE AUX ARCS";
@@ -57,11 +61,14 @@ void menu()
     PutCouleur(15,0);
     gotoligcol(27,0);
 
-    int choix = 0;
+    ///appel de la méthode de Graphe de chargement du fichier
     Graphe g("data_arcs.txt");
+    //Récupération des vecteurs de Points et Trajets
     std::vector<Point> points = g.rendre_listeP();
     std::vector<Trajet> trajets=g.rendre_listeT();
-    do
+
+    int choix = 0;
+    do  //Boucle de choix permettant le blindage du menu
     {
         std::cin >> choix;
         if(std::cin.fail())
@@ -106,7 +113,7 @@ void menu()
         }
         else
         {
-
+            //Si le choix est valide, appel de la fonction équivalente
             switch(choix)
             {
             case 1:
@@ -134,9 +141,10 @@ void menu()
             }
         }
     }
-    while(choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5 && choix !=6);
+    while(choix!=1 && choix!=2 && choix!=3 && choix!=4 && choix!=5 && choix !=6); //conditions de la boucle de blindage
 }
 
+///Fonction n°1 permettant l'affichage des caractéristiques d'un trajet
 void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
@@ -154,7 +162,7 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     PutCouleur(15,0);
     gotoligcol(16,0);
     int choix_case1 = 0;
-    do
+    do //Boucle de blindage
     {
         std::cin >> choix_case1;
         if(std::cin.fail())
@@ -183,7 +191,7 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
             }
             else
             {
-                std::cin.clear(); // Le flux est dasn un état invalide donc on le remet en état valide
+                std::cin.clear(); // Le flux est dans un état invalide donc on le remet en état valide
             }
         }
         else
@@ -202,18 +210,19 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 std::cout << "Veuillez entrer le numero du trajet dont vous souhaitez connaitre l'origine et l'arrivee." << std::endl;
                 PutCouleur(15,0);
                 gotoligcol(3,0);
-                do
+                do //Seconde boucle de blindage pour la saisie du trajet à étudier
                 {
                     std::cin >> choixTrajet;
                 }
-                while(choixTrajet < 1 || choixTrajet > 95);
+                while(choixTrajet < 1 || choixTrajet > 95); //Conditions de la boucle de blindage
                 for(auto elem : trajets)
                 {
                     if(choixTrajet == elem.getNumTrajet())
                     {
                         gotoligcol(6,0);
                         PutCouleur(3,0);
-                        std::cout << "Point(s) de depart (" << elem.getDepart() << ") , Point(s) d'arrivee (" << elem.getArrivee() << ") du trajet " << elem.getNumTrajet() <<"."<< std::endl;
+                        //Affichage des caractéristiques du trajet demandé
+                        std::cout << "Point(s) de depart (" << elem.getDepart() << ") , Point(s) d'arrivee (" << elem.getArrivee() << ") du trajet " << elem.getNumTrajet() <<"."<< "le trajet est de type " << elem.getTransport() << " et dure environ " << elem.getDuree() << " minutes." << std::endl;
                     }
                 }
                 int retour;
@@ -222,24 +231,25 @@ void case1(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl;
                 gotoligcol(12,0);
                 PutCouleur(15,0);
-                do
+                do  //Boucle de blindage
                 {
                     std::cin >> retour;
                 }
-                while(retour!=1 && retour!=2);
-                if(retour == 1)
+                while(retour!=1 && retour!=2); //Conditions de la boucle de blindage
+                if(retour == 1) //Retour au menu
                 {
                     system("cls");
                     menu();
                 }
-                else
+                else //Fin du programme
                     break;
             }
         }
     }
-    while(choix_case1!=1 && choix_case1!=2);
+    while(choix_case1!=1 && choix_case1!=2); //Conditions de la boucle de blindage
 }
 
+///Fonction d'affichage des caratéristiques d'un point
 void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
@@ -257,7 +267,7 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     PutCouleur(15,0);
     gotoligcol(16,0);
     int choix_case2 = 0;
-    do
+    do //Boucle de blindage
     {
         std::cin >> choix_case2;
         if(std::cin.fail())
@@ -302,16 +312,16 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 int choixPoint;
                 PutCouleur(4,0);
                 gotoligcol(1,0);
-                std::cout << "Veuillez entrer le numero du point dont vous souhaitez connaitre les trajets entrants  et ceux sortants." << std::endl;
+                std::cout << "Veuillez entrer le numero du point dont vous souhaitez connaitre les trajets entrants et ceux sortants." << std::endl;
                 PutCouleur(15,0);
                 gotoligcol(3,0);
-                do
+                do //Boucle de blindage
                 {
                     std::cin >> choixPoint;
                 }
-                while(choixPoint < 1 || choixPoint > 37);
+                while(choixPoint < 1 || choixPoint > 37); //onditions de la boucle de blindage
                 Point Point_a_afficher;
-                for (auto sommets : points)
+                for (auto sommets : points) //Boucle permettant de retrouver le point demandé dans le vecteur de Points
                 {
                     if (sommets.getNumPoint() == choixPoint)
                     {
@@ -319,6 +329,7 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     }
                 }
                 PutCouleur(3,0);
+                ///Affichage de toutes les caractéristiques du noeud demandé
                 std::cout<<std::endl<<"On part du noeud "<< Point_a_afficher.getNom() << "." <<std::endl;
                 std::cout <<std::endl<< "Les arcs qui partent de ce noeud sont: " <<std ::endl;
                 for (auto arcs : trajets)
@@ -355,23 +366,25 @@ void case2(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 int retour;
                 std::cout<<std::endl<< "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." <<std::endl<< std::endl;
                 PutCouleur(15,0);
-                do
+                do //Boucle de blindage
                 {
                     std::cin >> retour;
                 }
-                while(retour!=1 && retour!=2);
-                if(retour == 1)
+                while(retour!=1 && retour!=2); //conditions de la boucle de blindage
+                if(retour == 1) //Retour au menu
                 {
                     system("cls");
                     menu();
                 }
-                else
+                else //Fin du programme
                     break;
             }
         }
     }
-    while(choix_case2!=1 && choix_case2!=2);
+    while(choix_case2!=1 && choix_case2!=2); //conditions de la boucle de blindage
 }
+
+///Fonction d'affichage des algo BFS et Dijkstra à partir d'un point vers l'ensemble des autres points
 void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
@@ -389,7 +402,7 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     PutCouleur(15,0);
     gotoligcol(16,0);
     int choix_case3 = 0;
-    do
+    do //Boucle de blindage
     {
         std::cin >> choix_case3;
         if(std::cin.fail())
@@ -437,28 +450,28 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 std::cout << "Desormais, souhaitez-vous connaitre le chemin le plus rapide en terme :" << std::endl << std::endl<< "1/ de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << std::endl<< "2/ de temps ?" << std::endl<< std::endl;
                 PutCouleur(15,0);
                 int choixAlgo = 0;
-                do
+                do //boucle de blindage du choix d'algo fait par l'utilisateur
                 {
                     std::cin >> choixAlgo;
-                        }
-                while(choixAlgo != 1 && choixAlgo != 2);
+                }
+                while(choixAlgo != 1 && choixAlgo != 2); //conditions de la boucle de blindage
                     switch(choixAlgo)
                     {
-                    case 1:
+                    case 1: //Si choix n°1, appel de la méthode BFS de la classe Graphe
                     {
                         system("cls");
                         int choix4 = 1;
                         g.BFS(choix4);
                         break;
                     }
-                    case 2:
+                    case 2: //Si choix n°2, appel de la fonction Dijkstra
                     {
                         system("cls");
                         std::cout << "Choisissez un sommet entre 1 et 37 "<<std::endl;
                         int a;
-                        do
+                        do //Boucle de blindage
                         {   std::cin>>a;
-                        }while (a<0 || a>37);
+                        }while (a<0 || a>37); //conditions de la boucle de blindage
                         std::vector<Point> p = dijkstra(a, -1,points,trajets);
                         break;
                     }
@@ -467,24 +480,25 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 
                 int retour;
                 std::cout << "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl;
-                do
+                do //Boucle de blindage
                 {
                     std::cin >> retour;
                 }
-                while(retour!=1 && retour!=2);
-                if(retour == 1)
+                while(retour!=1 && retour!=2); //Conditions de la boucle de blindage
+                if(retour == 1) //Retour au menu
                 {
                     system("cls");
                     menu();
                 }
-                else
+                else //fin du progamme
                     break;
             }
         }
     }
-    while(choix_case3!=1 && choix_case3!=2);
+    while(choix_case3!=1 && choix_case3!=2); //Conditions de la boucle de blindage
 }
 
+///Fonction d'affichage des algos BFS et Dijkstra à partir d'un point de départ, vers un point d'arrivée
 void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);
@@ -502,7 +516,7 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     PutCouleur(3,0);
     gotoligcol(16,0);
     int choix_case4 = 0;
-    do
+    do //Boucle de blindage
     {
         PutCouleur(15,0);
         gotoligcol(16,0);
@@ -539,25 +553,25 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 
             switch(choix_case4)
             {
-            case 1:
+            case 1: //Retour au menu
                 system("cls");
                 menu();
                 break;
-            case 2:
+            case 2: //Suite de la fonction
                 system("cls");
                 PutCouleur(4,0);
                 gotoligcol(1,0);
                 std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << std::endl<< "1/ de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << std::endl<< "2/ de temps ?" << std::endl<< std::endl;
                 PutCouleur(15,0);
                 int choixAlgo = 0;
-                do
+                do //boucle de blindage
                 {
                     std::cin >> choixAlgo;
                 }
-                while(choixAlgo != 1 && choixAlgo != 2);
+                while(choixAlgo != 1 && choixAlgo != 2); //conditions de la boucle de blindage
                 switch(choixAlgo)
                 {
-                case 1:
+                case 1: //Appel de la méthode BFS de la classe Graphe
                 {
                     system("cls");
                     PutCouleur(3,0);
@@ -565,20 +579,20 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     g.BFS(choix4);
                     int retour;
                     std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2."<< std::endl;
-                    do
+                    do //boucle de blindage
                     {
                         std::cin >> retour;
                     }
-                    while(retour!=1 && retour!=2);
-                    if(retour == 1)
+                    while(retour!=1 && retour!=2); //conditions de la boucle de blindage
+                    if(retour == 1) //Retour au menu
                     {
                         system("cls");
                         menu();
                     }
-                    else
+                    else //Fin du programme
                         break;
                 }
-                case 2:
+                case 2: //appel de la fonction dijkstra
                 {
                     system("cls");
                     PutCouleur(3,0);
@@ -602,26 +616,27 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     afficher_chemin(chemin);
                     int retour;
                     std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl;
-                    do
+                    do //Boucle de blindage
                     {
                         std::cin >> retour;
                     }
-                    while(retour!=1 && retour!=2);
-                    if(retour == 1)
+                    while(retour!=1 && retour!=2); //Conditions de la boucle de blindage
+                    if(retour == 1) //Retour au menu
                     {
                         system("cls");
                         menu();
                     }
-                    else
+                    else //Fin du programme
                         break;
                 }
                 }
             }
         }
     }
-    while(choix_case4!=1 && choix_case4!=2);
+    while(choix_case4!=1 && choix_case4!=2); //conditions de la boucle de blindage
 }
 
+///
 void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 {
     PutCouleur(15,0);

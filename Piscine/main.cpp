@@ -1,22 +1,12 @@
+#include <windows.h>
 #include "Graphe.h"
 #include "header.h"
 #include "Menu.h"
-#include "Graphe.h"
-#include "Points.h"
-#include <iostream>
-#include <windows.h>
-
 
 
 int main()
 {
-
+    //Appel de la fonction Menu()
     menu();
-
-
-    std::vector<Point> fileBFS;
-
-//    afficher_noeuds(sommet,points,trajets);
-    //g.BFS();
     return 0;
 }

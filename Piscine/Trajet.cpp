@@ -1,28 +1,34 @@
 #include "Trajet.h"
 
+//Constructeur
 Trajet::Trajet() {}
+//Destructeur
 Trajet::~Trajet() {}
 
+//Getteur val pt départ
 int Trajet::getDepart()
 {
     return m_valDepart;
 }
-
+//Getteur val pt arrivee
 int Trajet::getArrivee()
 {
     return m_valArrivee;
 }
 
-  Point Trajet::getPointDepart()
-  {
-      return m_depart;
-  }
+//Getteur point départ
+Point Trajet::getPointDepart()
+{
+    return m_depart;
+}
 
-    Point Trajet::getPointArrivee()
-    {
-        return m_arrivee;
-    }
+//Getteur point arrivée
+Point Trajet::getPointArrivee()
+{
+    return m_arrivee;
+}
 
+//Getteur num trajet
 int Trajet::getNumTrajet()
 {
     return m_numTrajet;
@@ -36,6 +42,8 @@ Trajet::Trajet(int numTrajet, std::string nomTrajet, int valDepart, int valArriv
     m_valDepart = valDepart;
     m_typeTransport = typeTransport;
 }
+
+//Méthode Pour set les points
  void Trajet::setPoints(std::vector<Point> liste_Points)
  {
      for(unsigned int i =0; i<liste_Points.size();i++)
@@ -53,11 +61,13 @@ Trajet::Trajet(int numTrajet, std::string nomTrajet, int valDepart, int valArriv
  }
 
 
-
+//Guetteur durée
 double Trajet::getDuree() const
 {
     return m_duree;
 }
+
+//Méthode de calcul des durées pour chaque trajet
 void Trajet::setDuree()
 {
    int Altitude1 = m_depart.getAltitude();
@@ -89,17 +99,20 @@ void Trajet::setDuree()
     if(m_typeTransport.compare("BUS") == 0)
         m_duree = 30;
 }
+
+//Setteur durée trajet
  void Trajet::setDureeSki(double duree)
  {
      m_duree = duree;
  }
 
-
+//Getteur type Transport
 std::string Trajet::getTransport() const
 {
     return m_typeTransport;
 }
 
+//Guetteur Nom Trajet
 std::string Trajet::getNomTrajet()
 {
     return m_nomTrajet;

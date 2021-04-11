@@ -1,6 +1,6 @@
 #ifndef MENU_H_INCLUDED
 #define MENU_H_INCLUDED
-#include <vector>
+
 #include "Graphe.h"
 
 void PutCouleur(int couleurTexte, int couleurFond);

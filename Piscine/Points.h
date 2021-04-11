@@ -1,5 +1,6 @@
 #ifndef POINTS_H_INCLUDED
 #define POINTS_H_INCLUDED
+
 #include <iostream>
 #include <vector>
 #include <string>
@@ -25,22 +26,31 @@ public :
     Point();
 
     Point(int numPoint, std::string nom, double altitude);
+
     std::string getNom() const;
     void setNom(std::string nom);
+
     double getAltitude() const;
     void setAltitude(double altitude);
+
     int getNumPoint();
     void setNumPoint(int nvNumPoint);
+
     //Méthodes utile pour le Dikjstra
     void setBool(bool marque);
     bool getBool();
+
     void setChemin(double chemin);
     double getChemin();
+
     void setPredecesseur(double pred);
     double getPredecesseur();
+
     void setNomTrajet(std::string tratra);
     std::string getNomTrajet();
+
     //Méthodes pour le BFS
+
     void setCouleur(int color);
     int getCouleur()const;
 

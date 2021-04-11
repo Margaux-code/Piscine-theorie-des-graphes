@@ -1,11 +1,9 @@
-///Faire la récup des infos du fichier !
 #include "Graphe.h"
 
-
-
+///Méthode de chargement du fichier et de remplissage de l'objet g de type Graphe à partir des informations récupérées
 Graphe::Graphe(std::string nomfichier)
 {
-    std::ifstream ifs{nomfichier};
+    std::ifstream ifs{nomfichier}; //Ouverture du fichier
     if (!ifs)
         throw std::runtime_error( "Impossible d'ouvrir en lecture " + nomfichier );
     int ordre;
@@ -15,23 +13,24 @@ Graphe::Graphe(std::string nomfichier)
         std::string nom;
         double altitude;
         int val;
-        ifs >> val >> nom >> altitude;
+        ifs >> val >> nom >> altitude; //Récupération des caractéristiques des points du graphe
         Point n(val, nom, altitude);
-        m_points.push_back(n);
+        m_points.push_back(n); //Remplissage au fur et à mesure du vecteur de Points de la classe Graphe
     }
     int taille;
-    ifs >> taille;
+    ifs >> taille; //Récupération de la taille du graphe
     for(int i = 0; i < taille ; i++)
     {
         std::string nomTrajet;
         std::string typeTransport;
         int valDepart, valArrivee, val;
-        ifs >> val >> nomTrajet >> typeTransport >> valDepart >> valArrivee;
+        ifs >> val >> nomTrajet >> typeTransport >> valDepart >> valArrivee; //Récupération des caractéristiques des trajets du fichier
         Trajet n(val, nomTrajet, valDepart, valArrivee, typeTransport);
         n.setPoints(m_points);
         n.setDuree();
-        m_trajets.push_back(n);
+        m_trajets.push_back(n); //Remplissage du vecteur de Trajets de la class Graphe
     }
+    /// éléments permettants l'affichage du fichier si besoin est
     /*for(auto p : m_points)
     {
         std::cout << "num point : " << p.getNumPoint() << std::endl;
@@ -51,8 +50,10 @@ Graphe::Graphe(std::string nomfichier)
     }*/
 }
 
+//Destructeur
 Graphe::~Graphe() {}
 
+///getters des vecteurs
 std::vector<Point> Graphe::rendre_listeP()
 {
     return m_points;
@@ -63,46 +64,50 @@ std::vector<Trajet> Graphe::rendre_listeT()
     return m_trajets;
 }
 
+///Méthode Faisant tourner et afficher l'algorithme de Breadth First Search
+///Aidé par Nicolas Dreyfus et Aurélien Bon du TD1 et Gioia Mariasole Galiazzo du TD6
+
 void Graphe::BFS(int choixAffichage)
 {
     int valSommetDepart;
+    //Création de la file du BFS
     std::queue<Point> file;
     Point point;
     std::cout << "entrez le sommet de depart d'etude entre 1 et 37 de la station afin" << std::endl << "de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl;
-    do
+    do //Boucle de blindage
     {
-        std::cin >>valSommetDepart;
+        std::cin >>valSommetDepart; //Récupération du sommet de départ
     }
-    while(valSommetDepart < 1 || valSommetDepart > 37);
+    while(valSommetDepart < 1 || valSommetDepart > 37); //Conditions de la boucle de blindage
 
-    for(auto& elem : m_points)
+    for(auto& elem : m_points) //Boucle utilisant les setter pour initialiser le bfs
     {
         elem.setCouleur(0);
         elem.setBFS(-1);
     }
     file.push(m_points[valSommetDepart - 1]); //On push le Point de départ
-    m_points[valSommetDepart - 1].setCouleur(1); //On considère le point de départ comme traité
+    m_points[valSommetDepart - 1].setCouleur(1); //On considère le point de départ comme en cours d'étude
     while(!file.empty()) //Tant que la file n'est pas vide...
     {
         Point debut = file.front(); //On récupère le premier élément de la file
         //debut = m_points[debut.getNumPoint() - 1];
-        for(auto elem : m_trajets)
+        for(auto elem : m_trajets) //Boucle faisant tourner le vecteur de trajets
         {
-            if(elem.getPointDepart().getNumPoint() == debut.getNumPoint())
+            if(elem.getPointDepart().getNumPoint() == debut.getNumPoint()) //Test pour déterminer si le point du vecteur est le même que celui présent en haut de la file
             {
-                if(m_points[elem.getPointArrivee().getNumPoint() - 1].getCouleur() == 0)
+                if(m_points[elem.getPointArrivee().getNumPoint() - 1].getCouleur() == 0) //Test pour déterminer si le point n'a pas encore été étudié
                 {
-                    file.push(elem.getPointArrivee());
-                    m_points[elem.getPointArrivee().getNumPoint() - 1].setCouleur(1);
+                    file.push(elem.getPointArrivee()); //Push le point d'arrivée du trajet étudié dans la file
+                    m_points[elem.getPointArrivee().getNumPoint() - 1].setCouleur(1); //On considère le point comme en cours d'étude
                     m_points[elem.getPointArrivee().getNumPoint() - 1].setBFS(debut.getNumPoint());
                 }
             }
         }
         file.pop(); //On retire le premier élément de la file
-        m_points[debut.getNumPoint() - 1].setCouleur(2);
+        m_points[debut.getNumPoint() - 1].setCouleur(2); //On tag le point comme étant étudié
     }
     //Affichage du BFS
-    if(choixAffichage == 1)
+    if(choixAffichage == 1) //Si à partir du menu il est demandé d'afficher l'ensemble des trajets pour l'ensemble des points à partir d'un point de départ
     {
         system("cls");
         std::cout << "Trajets suivant le moins de pistes et remontes a partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
@@ -126,15 +131,15 @@ void Graphe::BFS(int choixAffichage)
         }
         std::cout<<"----------------------------"<<std::endl;
     }
-    if(choixAffichage == 2)
+    if(choixAffichage == 2) //Si à partir du menu il est demandé d'afficher le trajet pour un point de départ précis, et un point d'arrivé précis
     {
         int pointFinal;
         std::cout << "entrez le sommet d'arrive entre 1 et 37 de la station" << std::endl;
-        do
+        do //boucle de blindage
         {
-            std::cin >>pointFinal;
+            std::cin >>pointFinal; //récupération du numéro du point d'arrivée
         }
-        while(pointFinal < 1 || pointFinal > 37);
+        while(pointFinal < 1 || pointFinal > 37); //conditions de la boucle de blindage
         system("cls");
         std::cout << "Trajet suivant le moins de pistes et remontes" << std::endl;
         int anteBfs = m_points[pointFinal - 1].getBFS();//on recupere le predecesseur de chaque sommet

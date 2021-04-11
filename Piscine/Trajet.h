@@ -1,13 +1,13 @@
 #ifndef TRAJET_H_INCLUDED
 #define TRAJET_H_INCLUDED
 
-#include <iostream>
-#include <string>
+
 #include "Points.h"
 
 class Trajet
 {
 private :
+
     std::string m_nomTrajet;
     int m_valArrivee;
     int m_valDepart;
@@ -16,7 +16,9 @@ private :
     Point m_depart;
     Point m_arrivee;
     std::string m_typeTransport;
+
 public:
+
     Trajet();
    ~Trajet();
 

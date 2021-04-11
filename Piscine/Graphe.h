@@ -1,8 +1,6 @@
 #ifndef GRAPHE_H_INCLUDED
 #define GRAPHE_H_INCLUDED
 
-#include <iostream>
-#include <vector>
 #include <queue>
 #include <fstream>
 #include "Points.h"
@@ -17,8 +15,6 @@ public :
     Graphe(std::string nomfichier);
 
     ~Graphe();
-
-    //void affichage();
 
     std::vector<Point> rendre_listeP();
     std::vector<Trajet> rendre_listeT();
