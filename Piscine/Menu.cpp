@@ -561,7 +561,9 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 system("cls");
                 PutCouleur(4,0);
                 gotoligcol(1,0);
-                std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl << std::endl<< "1/ de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << std::endl<< "2/ de temps ?" << std::endl<< std::endl;
+                std::cout << "Desormais, souhaitez-vous savoir le chemin le plus rapide en terme :" << std::endl<< std::endl;
+                PutCouleur(3,0);
+                std::cout << "1/ de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << std::endl<< "2/ de temps ?" << std::endl<< std::endl;
                 PutCouleur(15,0);
                 int choixAlgo = 0;
                 do //boucle de blindage

@@ -1,4 +1,5 @@
 #include "Graphe.h"
+#include "Menu.h"
 
 ///Méthode de chargement du fichier et de remplissage de l'objet g de type Graphe à partir des informations récupérées
 Graphe::Graphe(std::string nomfichier)
@@ -73,7 +74,10 @@ void Graphe::BFS(int choixAffichage)
     //Création de la file du BFS
     std::queue<Point> file;
     Point point;
-    std::cout << "entrez le sommet de depart d'etude entre 1 et 37 de la station afin" << std::endl << "de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl;
+    gotoligcol(1,0);
+    PutCouleur(4,0);
+    std::cout << "Entrez le sommet de depart d'etude entre 1 et 37 de la station afin de trouver les chemins les plus courts pour atteindre l'ensemble des points :" << std::endl<< std::endl;
+    PutCouleur(15,0);
     do //Boucle de blindage
     {
         std::cin >>valSommetDepart; //Récupération du sommet de départ
@@ -110,6 +114,8 @@ void Graphe::BFS(int choixAffichage)
     if(choixAffichage == 1) //Si à partir du menu il est demandé d'afficher l'ensemble des trajets pour l'ensemble des points à partir d'un point de départ
     {
         system("cls");
+        gotoligcol(1,0);
+        PutCouleur(3,0);
         std::cout << "Trajets suivant le moins de pistes et remontes a partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
         for(unsigned int i=1; i < m_points.size() + 1; i++)
         {
@@ -134,14 +140,18 @@ void Graphe::BFS(int choixAffichage)
     if(choixAffichage == 2) //Si à partir du menu il est demandé d'afficher le trajet pour un point de départ précis, et un point d'arrivé précis
     {
         int pointFinal;
-        std::cout << "entrez le sommet d'arrive entre 1 et 37 de la station" << std::endl;
+        PutCouleur(4,0);
+        std::cout << std::endl << "Entrez le sommet d'arrive entre 1 et 37 de la station." << std::endl<< std::endl;
+        PutCouleur(15,0);
         do //boucle de blindage
         {
             std::cin >>pointFinal; //récupération du numéro du point d'arrivée
         }
         while(pointFinal < 1 || pointFinal > 37); //conditions de la boucle de blindage
         system("cls");
-        std::cout << "Trajet suivant le moins de pistes et remontes" << std::endl;
+        gotoligcol(1,0);
+        PutCouleur(3,0);
+        std::cout << "Trajet suivant le moins de pistes et remontees." << std::endl;
         int anteBfs = m_points[pointFinal - 1].getBFS();//on recupere le predecesseur de chaque sommet
         if(anteBfs!=(-1))//si le sommet a des prédecesseur
         {
@@ -157,6 +167,6 @@ void Graphe::BFS(int choixAffichage)
             }
             std::cout<<std::endl;
         }
-    std::cout<<"----------------------------"<<std::endl;
+    std::cout<<std::endl;
     }
 }

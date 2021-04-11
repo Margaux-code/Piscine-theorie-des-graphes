@@ -7,10 +7,10 @@
 
 void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 {
-    std::cout <<" Choisissez votre point de depart "<<std::endl;
+    std::cout <<" Choisissez votre point de depart. "<<std::endl;
     int depart;
     std::cin >> depart;
-    std::cout << "Choisissez votre point arrivee" <<std::endl;
+    std::cout << "Choisissez votre point arrivee." <<std::endl;
     int arrivee;
     std::cin >> arrivee;
     std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
@@ -24,10 +24,10 @@ void afficher_tous_les_temps(std::vector <Point> TousPoints)
     PutCouleur(9,0);
     for (auto elem : TousPoints)
     {
-        std::cout << "Pour le point " <<elem.getNom()<<" ("<< elem.getNumPoint()<<") : " << elem.getChemin() <<" minutes"<<std::endl;
+        std::cout << "Pour le point " <<elem.getNom()<<" ("<< elem.getNumPoint()<<") : " << elem.getChemin() <<" minutes."<<std::endl;
     }
     std::cout <<std::endl;
-    std::cout <<"Pour voir le chemin complet a prendre allez voir l'itineraire le plus rapide dans le menu 4"<<std::endl;
+    std::cout <<"Pour voir le chemin complet a prendre allez voir l'itineraire le plus rapide dans le menu 4."<<std::endl;
 
 }
 
@@ -73,7 +73,7 @@ void afficher_chemin(std::vector<Point> Chemin_final)
     if (Chemin_final[0].getChemin()==100000) //Si il n'y a pas de chemin
     {
         PutCouleur(15,0);
-        std::cout <<"Malheureusement relier ces deux points avec vos préférences n'est pas possible :( " <<std::endl;
+        std::cout <<"Malheureusement relier ces deux points avec vos préférences n'est pas possible :( ." <<std::endl;
     }
     else
     {
@@ -97,7 +97,7 @@ void afficher_chemin(std::vector<Point> Chemin_final)
 
         }
         std::cout<<std::endl;
-        std::cout <<"Le temps que cela va prendre est " << Chemin_final[0].getChemin() <<" minutes" <<std::endl;
+        std::cout <<"Le temps que cela va prendre est " << Chemin_final[0].getChemin() <<" minutes." <<std::endl;
 
     }
 
