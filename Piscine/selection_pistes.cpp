@@ -78,7 +78,7 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
 
     }
 
-
+    system("cls");
     switch (a) // Lancement du dikjstra pour ces chemins particuliers
     {
     case 1 :

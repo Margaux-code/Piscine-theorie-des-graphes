@@ -177,7 +177,7 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
                 if (bouboul == false)
                 {
                     //Calcul de la durée
-                    int test = TousTrajets[i].getDuree();
+
                     int chemin = TousTrajets[i].getDuree() + file_attente[numero_sommet].first.getChemin();
                     if (chemin < TousPoints[place].getChemin())
                     {
