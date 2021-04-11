@@ -19,6 +19,7 @@ void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 
 void afficher_tous_les_temps(std::vector <Point> TousPoints)
 {
+    /// Fonction d'affichage pour le menu 3
     PutCouleur(9,0);
     for (auto elem : TousPoints)
     {
@@ -32,18 +33,19 @@ void afficher_tous_les_temps(std::vector <Point> TousPoints)
 std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> TousPoints)
 {
 
+/// Ce sous-programme cherche le chemin le plus court a partir des antecedents des sommets
     std::vector<Point> Chemin;
     Point actuel;
     for (unsigned int i=0; i<TousPoints.size(); i++)
     {
-        if (TousPoints[i].getNumPoint()==arrivee)
+        if (TousPoints[i].getNumPoint()==arrivee) // On cherche le dernier sommet
         {
             actuel = TousPoints[i];
             Chemin.push_back(actuel);
         }
     }
 
-    while (actuel.getNumPoint()!= debut)
+    while (actuel.getNumPoint()!= debut) // Et on remonte les antecedents jusqu'au premier sommet
     {
         int predecesseur = actuel.getPredecesseur();
         for (unsigned int i=0; i<TousPoints.size(); i++)
@@ -66,7 +68,8 @@ std::vector<Point> Trouver_chemin(int debut, int arrivee,std::vector<Point> Tous
 void afficher_chemin(std::vector<Point> Chemin_final)
 {
 
-    if (Chemin_final[0].getChemin()==100000)
+///Affichage chemin le plus court en temps pour menu 4
+    if (Chemin_final[0].getChemin()==100000) //Si il n'y a pas de chemin
     {
         PutCouleur(15,0);
         std::cout <<"Malheureusement relier ces deux points avec vos préférences n'est pas possible :( " <<std::endl;
@@ -103,6 +106,7 @@ void afficher_chemin(std::vector<Point> Chemin_final)
 
 std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint, std::vector<Trajet> TousTrajets)
 {
+    ///Algorithme Dikjstra
     //initialiser une file d'attente
     std::vector<std::pair< Point, double>> file_attente;
     std::vector<Point> TousPoints = TousPoint;
@@ -185,15 +189,15 @@ std::vector <Point> dijkstra(int debut, int arrivee,std::vector<Point> TousPoint
             }
         }
 
-
+ //On enleve le sommet qu'on vient de visiter de la file d'attente
         file_attente.erase(file_attente.begin()+ numero_sommet);
 
     }
     std::vector<Point> Chemin_final;
-    if (arrivee == -1)
+    if (arrivee == -1) //Affiche tous les temps pour le menu 3
     {
         afficher_tous_les_temps(TousPoints);
     }else
-    Chemin_final = Trouver_chemin(debut, arrivee,TousPoints);
+    Chemin_final = Trouver_chemin(debut, arrivee,TousPoints); // Trouve le chemin entre deux sommets
     return Chemin_final;
 }

@@ -2,14 +2,15 @@
 
 void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousPoints)
 {
-    std::cout << "Quel type de pistes voulez vous faire ?" <<std::endl;
-    std::cout << "1.Niveau debutant priorisation des pistes vertes et bleues et pas de teleskis "<<std::endl;
-    std::cout << "2.Niveau intermediaire  priorisation pistes rouges et toutes remontees mecaniques"<<std::endl;
-    std::cout <<"3. Niveau avance : ski-plaisir : plein de descentes moins de remontees " <<std::endl;
+    std::cout << "Quel type de pistes voulez vous faire ? \n" <<std::endl;
+    std::cout << "1.Niveau debutant priorisation des pistes vertes et bleues et pas de teleskis \n "<<std::endl;
+    std::cout << "2.Niveau intermediaire  priorisation pistes rouges et toutes remontees mecaniques \n"<<std::endl;
+    std::cout <<"3. Niveau avance : ski-plaisir : plein de descentes moins de remontees \n " <<std::endl;
     std::vector <Trajet> debutant = TousTrajets;
     std::vector <Trajet> intermediaire =TousTrajets;
     std::vector <Trajet> ski_plaisir  = TousTrajets;
     Trajet tratra_debeug;
+    // On va arbitrairement rajouter du temps au piste que l'on ne veut pas prendre en priorité pour que dikjstra ne les prenne pas en priorité
     for (auto elem : debutant)
     {
         double  temps = elem.getDuree();
