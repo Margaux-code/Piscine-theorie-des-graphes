@@ -116,7 +116,7 @@ void Graphe::BFS(int choixAffichage)
         system("cls");
         gotoligcol(1,0);
         PutCouleur(3,0);
-        std::cout << "Trajets suivant le moins de pistes et remontes a partir du point " << valSommetDepart << std::endl << "pour atteindre tous les autres points de la station des Arcs" << std::endl;
+        std::cout << "Trajets suivant le moins de pistes et remontes a partir du point " << valSommetDepart << " pour atteindre tous les autres points de la station des Arcs" << std::endl<< std::endl;
         for(unsigned int i=1; i < m_points.size() + 1; i++)
         {
             int anteBfs = m_points[i - 1].getBFS();//on recupere le predecesseur de chaque sommet
@@ -135,7 +135,7 @@ void Graphe::BFS(int choixAffichage)
                 std::cout<<std::endl;
             }
         }
-        std::cout<<"----------------------------"<<std::endl;
+        std::cout<<std::endl;
     }
     if(choixAffichage == 2) //Si à partir du menu il est demandé d'afficher le trajet pour un point de départ précis, et un point d'arrivé précis
     {

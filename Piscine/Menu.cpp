@@ -49,7 +49,7 @@ void menu()
     std::cout << "2/ Choisir un point";
     PutCouleur(3,0);
     gotoligcol(16,0);
-    std::cout << "3/ Afficher l itineraire de plus rapide" ;
+    std::cout << "3/ Afficher l'itineraire de plus rapide" ;
     PutCouleur(3,0);
     gotoligcol(19,0);
     std::cout << "4/ Afficher tous les plus courts chemins d un point" ;
@@ -447,7 +447,9 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 system("cls");
                 PutCouleur(4,0);
                 gotoligcol(1,0);
-                std::cout << "Desormais, souhaitez-vous connaitre le chemin le plus rapide en terme :" << std::endl << std::endl<< "1/ de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << std::endl<< "2/ de temps ?" << std::endl<< std::endl;
+                std::cout << "Desormais, souhaitez-vous connaitre le chemin le plus rapide en terme :" << std::endl << std::endl;
+                PutCouleur(3,0);
+                std::cout << "1/ de trajets (pistes, remontees mecaniques, bus) ?" << std::endl << std::endl<< "2/ de temps ?" << std::endl<< std::endl;
                 PutCouleur(15,0);
                 int choixAlgo = 0;
                 do //boucle de blindage du choix d'algo fait par l'utilisateur
@@ -479,7 +481,8 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 
 
                 int retour;
-                std::cout << "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl;
+                std::cout << "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl<< std::endl;
+                PutCouleur(15,0);
                 do //Boucle de blindage
                 {
                     std::cin >> retour;
@@ -597,18 +600,20 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 case 2: //appel de la fonction dijkstra
                 {
                     system("cls");
-                    PutCouleur(3,0);
-                    PutCouleur(15,0);
-                    std::cout <<" Choisissez votre point de depart "<<std::endl;
+                    gotoligcol(1,0);
+                    PutCouleur(4,0);
+                    std::cout <<" Choisissez votre point de depart entre 1 et 37 "<<std::endl<<std::endl;
                     int depart;
+                    PutCouleur(15,0);
                     do
                     {
                         std::cin >> depart;
                     }
                     while (depart<0 || depart >37);
-
-                    std::cout << "Choisissez votre point arrivee" <<std::endl;
+                    PutCouleur(4,0);
+                    std::cout <<std::endl<< "Choisissez votre point d'arrivee" <<std::endl<<std::endl;
                     int arrivee;
+                    PutCouleur(15,0);
                     do
                     {
                         std::cin >> arrivee;
