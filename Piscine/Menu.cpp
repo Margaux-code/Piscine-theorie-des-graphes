@@ -469,11 +469,15 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     case 2: //Si choix n°2, appel de la fonction Dijkstra
                     {
                         system("cls");
-                        std::cout << "Choisissez un sommet entre 1 et 37 "<<std::endl;
+                        PutCouleur(4,0);
+                        gotoligcol(1,0);
+                        std::cout << "Choisissez un sommet entre 1 et 37 "<<std::endl<<std::endl;
+                        PutCouleur(15,0);
                         int a;
                         do //Boucle de blindage
                         {   std::cin>>a;
                         }while (a<0 || a>37); //conditions de la boucle de blindage
+                        std::cout<<std::endl;
                         std::vector<Point> p = dijkstra(a, -1,points,trajets);
                         break;
                     }
@@ -481,7 +485,7 @@ void case3(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
 
 
                 int retour;
-                std::cout << "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl<< std::endl;
+                std::cout << std::endl<< "Voulez-vous retourner au menu ?     1/ Oui    2/ Non" << std::endl<< std::endl;
                 PutCouleur(15,0);
                 do //Boucle de blindage
                 {
@@ -583,7 +587,8 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     int choix4 = 2;
                     g.BFS(choix4);
                     int retour;
-                    std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2."<< std::endl;
+                    std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2."<< std::endl<< std::endl;
+                    PutCouleur(15,0);
                     do //boucle de blindage
                     {
                         std::cin >> retour;
@@ -622,7 +627,8 @@ void case4(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                     std::vector <Point> chemin = dijkstra( depart,arrivee,points,trajets);
                     afficher_chemin(chemin);
                     int retour;
-                    std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl;
+                    std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl<< std::endl;
+                    PutCouleur(15,0);
                     do //Boucle de blindage
                     {
                         std::cin >> retour;

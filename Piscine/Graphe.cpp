@@ -148,10 +148,8 @@ void Graphe::BFS(int choixAffichage)
             std::cin >>pointFinal; //récupération du numéro du point d'arrivée
         }
         while(pointFinal < 1 || pointFinal > 37); //conditions de la boucle de blindage
-        system("cls");
-        gotoligcol(1,0);
         PutCouleur(3,0);
-        std::cout << "Trajet suivant le moins de pistes et remontees." << std::endl;
+        std::cout << std::endl<< "Trajet suivant le moins de pistes et remontees." << std::endl;
         int anteBfs = m_points[pointFinal - 1].getBFS();//on recupere le predecesseur de chaque sommet
         if(anteBfs!=(-1))//si le sommet a des prédecesseur
         {

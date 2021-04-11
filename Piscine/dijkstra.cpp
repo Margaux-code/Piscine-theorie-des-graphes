@@ -24,7 +24,7 @@ void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 void afficher_tous_les_temps(std::vector <Point> TousPoints)
 {
     /// Fonction d'affichage pour le menu 3
-    PutCouleur(9,0);
+    PutCouleur(3,0);
     for (auto elem : TousPoints)
     {
         std::cout << "Pour le point " <<elem.getNom()<<" ("<< elem.getNumPoint()<<") : " << elem.getChemin() <<" minutes."<<std::endl;
