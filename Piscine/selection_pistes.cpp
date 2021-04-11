@@ -2,9 +2,19 @@
 #include "Points.h"
 #include "Trajet.h"
 #include "Menu.h"
+#include <fstream>
+#include <stdio.h>
 
 void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousPoints)
 {
+    std::ifstream temp("temp.txt");
+    if(temp)
+    {
+        temp.close();
+        std::remove("temp.txt");
+    }
+    std::ofstream fichierT("temp.txt");
+    int numTrajet;
     // Affichage menu 5
     PutCouleur(4,0);
     gotoligcol(1,0);
@@ -41,8 +51,9 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
 
         if (a == 1)
         {
-                double temps = debutant[i].getDuree(); /// A ecrire dans les fichiers
-
+            numTrajet = i + 1;
+            double temps = debutant[i].getDuree(); /// A ecrire dans les fichiers
+            fichierT << "Trajet n°" << numTrajet << " : " << temps << " minutes." << std::endl;
         }
 
     }
@@ -58,8 +69,9 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
         }
                 if (a == 2)
         {
+            numTrajet = i + 1;
             double temps = intermediaire[i].getDuree(); /// A ecrire dans les fichiers
-
+            fichierT << "Trajet n°" << numTrajet << " : " << temps << " minutes." << std::endl;
         }
 
 
@@ -77,12 +89,13 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
         }
           if (a == 3)
         {
+            numTrajet = i + 1;
             double temps = ski_plaisir[i].getDuree(); /// A ecrire dans les fichiers
-
+            fichierT << "Trajet n°" << numTrajet << " : " << temps << " minutes." << std::endl;
         }
 
     }
-
+    fichierT.close();
     system("cls");
     switch (a) // Lancement du dikjstra pour ces chemins particuliers
     {
