@@ -1,14 +1,19 @@
 #include "header.h"
 #include "Points.h"
 #include "Trajet.h"
+#include "Menu.h"
 
 void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousPoints)
 {
     // Affichage menu 5
+    PutCouleur(4,0);
+    gotoligcol(1,0);
     std::cout << "Quel type de pistes voulez vous faire ? \n" <<std::endl;
-    std::cout << "1.Niveau debutant priorisation des pistes vertes et bleues et pas de teleskis \n "<<std::endl;
-    std::cout << "2.Niveau intermediaire  priorisation pistes rouges et toutes remontees mecaniques \n"<<std::endl;
-    std::cout << "3. Niveau avance : ski-plaisir : plein de descentes moins de remontees \n " <<std::endl;
+    PutCouleur(3,0);
+    std::cout << "1/ Niveau debutant priorisation des pistes vertes et bleues et pas de teleskis. \n "<<std::endl;
+    std::cout << "2/ Niveau intermediaire  priorisation pistes rouges et toutes remontees mecaniques. \n"<<std::endl;
+    std::cout << "3/ Niveau avance : ski-plaisir : plein de descentes moins de remontees. \n " <<std::endl;
+    PutCouleur(15,0);
     // Initialisation vecteurs differents par niveau
     std::vector <Trajet> debutant = TousTrajets;
     std::vector <Trajet> intermediaire =TousTrajets;
@@ -82,13 +87,18 @@ void selection_piste(std::vector <Trajet> TousTrajets, std::vector <Point> TousP
     switch (a) // Lancement du dikjstra pour ces chemins particuliers
     {
     case 1 :
-        std::cout <<" Choisissez votre point de depart "<<std::endl;
+        PutCouleur(4,0);
+        gotoligcol(1,0);
+        std::cout <<"Choisissez votre point de depart "<<std::endl<<std::endl;
         int depart;
+        PutCouleur(15,0);
         std::cin >> depart;
-        std::cout << "Choisissez votre point arrivee" <<std::endl;
+        std::cout << std::endl<< std::endl;
+        PutCouleur(4,0);
+        std::cout << "Choisissez votre point arrivee" <<std::endl<<std::endl;
         int arrivee;
+        PutCouleur(15,0);
         std::cin >> arrivee;
-
         chemin = dijkstra( depart,arrivee,TousPoints,debutant);
         afficher_chemin(chemin);
         break;

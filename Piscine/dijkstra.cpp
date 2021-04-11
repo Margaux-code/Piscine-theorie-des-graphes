@@ -7,10 +7,11 @@ void debut_dikjstra( std::vector<Point> points, std::vector<Trajet> trajets)
 {
     gotoligcol(1,0);
     PutCouleur(4,0);
-    std::cout <<" Choisissez votre point de depart. "<<std::endl<<std::endl;
+    std::cout <<"Choisissez votre point de depart. "<<std::endl<<std::endl;
     int depart;
     PutCouleur(15,0);
     std::cin >> depart;
+    std::cout << std::endl;
     PutCouleur(4,0);
     std::cout << "Choisissez votre point arrivee." <<std::endl<<std::endl;
     int arrivee;

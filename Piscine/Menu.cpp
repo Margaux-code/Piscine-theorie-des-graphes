@@ -49,10 +49,10 @@ void menu()
     std::cout << "2/ Choisir un point";
     PutCouleur(3,0);
     gotoligcol(16,0);
-    std::cout << "3/ Afficher l'itineraire de plus rapide" ;
+    std::cout << "3/ Afficher tous les plus courts chemins d'un point" ;
     PutCouleur(3,0);
     gotoligcol(19,0);
-    std::cout << "4/ Afficher tous les plus courts chemins d un point" ;
+    std::cout << "4/ Afficher l'itineraire de plus rapide" ;
     PutCouleur(3,0);
     gotoligcol(22,0);
     std::cout << "5/ Calculer le chemin le plus interessant entre deux points";
@@ -89,10 +89,10 @@ void menu()
             std::cout << "2/ Choisir un point";
             PutCouleur(3,0);
             gotoligcol(16,0);
-            std::cout << "3/ Afficher l itineraire de plus rapide" ;
+            std::cout << "3/ Afficher tous les plus courts chemins d un point" ;
             PutCouleur(3,0);
             gotoligcol(19,0);
-            std::cout << "4/ Afficher tous les plus courts chemins d un point" ;
+            std::cout << "4/ Afficher l'itineraire de plus rapide" ;
             PutCouleur(3,0);
             gotoligcol(22,0);
             std::cout << "5/ Calculer le chemin le plus interessant entre deux points";
@@ -669,6 +669,8 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
     int choix_case5 = 0;
     do
     {
+        PutCouleur(15,0);
+        gotoligcol(16,0);
         std::cin >> choix_case5;
         if(std::cin.fail())
         {
@@ -711,7 +713,8 @@ void case5(std::vector<Trajet> trajets, std::vector<Point> points, Graphe g)
                 system("cls");
                 selection_piste(trajets,points);
                 int retour;
-                std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl;
+                std::cout << "Si vous voulez retourner au menu principal, entrez 1, sinon rentrez 2." << std::endl<< std::endl;
+                PutCouleur(15,0);
                 do
                 {
                     std::cin >> retour;
